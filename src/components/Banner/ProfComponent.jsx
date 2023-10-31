@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { AiOutlineInstagram } from "react-icons/ai";
-import { GiEarthAmerica } from "react-icons/gi";
+import { AiOutlineInstagram, AiFillGithub } from "react-icons/ai";
+// import CV from "../../assets/CV.pdf"
+// import { GiEarthAmerica } from "react-icons/gi";
 import { FaLinkedinIn } from "react-icons/fa";
 import { Slide } from "react-awesome-reveal";
 import Me from "../../assets/images/me.png";
@@ -22,22 +23,30 @@ const ProfComponent = () => {
             and user-friendly websites, driven by innovation and a strong
             foundation in computer science.
           </p>
-          <button>Let's talk</button>
+          <a target="_blank" href="/CV.pdf">
+            <button>Checkout my CV (PDF)</button>
+          </a>
           <Social>
-            <p>Check out my</p>
+            <p>Visit my</p>
             <div className="social-icons">
               <span>
-                <a href="https://www.instagram.com/elyes_kacem/">
+                <a
+                  target="_blank"
+                  href="https://www.instagram.com/elyes_kacem/"
+                >
                   <AiOutlineInstagram />
                 </a>
               </span>
               <span>
-                <a href="/">
-                  <GiEarthAmerica />
+                <a target="_blank" href="https://github.com/ElyesKacem">
+                  <AiFillGithub />
                 </a>
               </span>
               <span>
-                <a href="/">
+                <a
+                  target="_blank"
+                  href="https://www.linkedin.com/in/elyeskacem/"
+                >
                   <FaLinkedinIn />
                 </a>
               </span>

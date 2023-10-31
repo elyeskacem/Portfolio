@@ -1,43 +1,43 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
 import styled from "styled-components";
-import ClientSlider from "./ClientSlider";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Slide } from "react-awesome-reveal";
+import HonorsSlider from "./HonorsSlider";
 
 let clients = [
   {
-    name: "John Michel",
+    title: "1st Prize at Space Hack Tunisia",
     position: "web developer",
     img_url:
-      "https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg",
+      "https://res.cloudinary.com/dkzq4epny/image/upload/v1698782272/yeklycspipzynlhyakbs.jpg",
     stars: 3,
     disc: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
         Temporibus consequuntur dolores labore natus similique nemo doloribus cum accusantium adipisci maiores.`,
   },
   {
-    name: "John Michel",
+    title: "1st Prize at Coding Universe",
     position: "web developer",
     img_url:
-      "https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg",
+      "https://res.cloudinary.com/dkzq4epny/image/upload/v1698782275/ej66sz4ehozomj9j33cm.jpg",
     stars: 4,
     disc: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
         Temporibus consequuntur dolores labore natus similique nemo doloribus cum accusantium adipisci maiores.`,
   },
   {
-    name: "John Michel",
+    title: "1st Prize at Coding Universe",
     position: "web developer",
     img_url:
-      "https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg",
+      "https://res.cloudinary.com/dkzq4epny/image/upload/v1698783992/x10dhrlafesgxcjkdd1z.png",
     stars: 5,
     disc: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
         Temporibus consequuntur dolores labore natus similique nemo doloribus cum accusantium adipisci maiores.`,
   },
   {
-    name: "John Michel",
+    title: "1st Prize at Coding Universe",
     position: "web developer",
     img_url:
-      "https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg",
+      "https://res.cloudinary.com/dkzq4epny/image/upload/v1698782607/m9v6ae6rxlf5moj3aa6y.jpg",
     stars: 5,
     disc: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
         Temporibus consequuntur dolores labore natus similique nemo doloribus cum accusantium adipisci maiores.`,
@@ -79,29 +79,16 @@ var settings = {
   ],
 };
 
-const Clients = () => {
+const Honors = () => {
   const arrowRef = useRef(null);
   let clientDisc = "";
-  clientDisc = clients.map((item, i) => <ClientSlider item={item} key={i} />);
+  clientDisc = clients.map((item, i) => <HonorsSlider item={item} key={i} />);
   return (
     <Container id="client">
       <Slide direction="left">
-        <span className="green">testimonials</span>
-        <h1>what clients say</h1>
+        <span className="green">Honors</span>
+        <h1>Some cherished memories</h1>
       </Slide>
-      {/* <Testimonials>
-            <Slider ref={arrowRef} {...settings}>
-                {clientDisc}
-            </Slider>
-            <Buttons>
-                <button
-                onClick={() => arrowRef.current.slickPrev()}
-                ><IoIosArrowBack/></button>
-                <button
-                onClick={() => arrowRef.current.slickNext()}
-                ><IoIosArrowForward/></button>
-            </Buttons>
-        </Testimonials> */}
       <Testimonials>
         <Slider ref={arrowRef} {...settings}>
           {clientDisc}
@@ -115,11 +102,24 @@ const Clients = () => {
           </button>
         </Buttons>
       </Testimonials>
+      {/* <Testimonials>
+        <Slider ref={arrowRef} {...settings}>
+          {clientDisc}
+        </Slider>
+        <Buttons>
+          <button onClick={() => arrowRef.current.slickPrev()}>
+            <IoIosArrowBack />
+          </button>
+          <button onClick={() => arrowRef.current.slickNext()}>
+            <IoIosArrowForward />
+          </button>
+        </Buttons>
+      </Testimonials> */}
     </Container>
   );
 };
 
-export default Clients;
+export default Honors;
 
 const Container = styled.div`
   width: 80%;

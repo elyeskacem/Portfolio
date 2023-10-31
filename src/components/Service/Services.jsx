@@ -20,23 +20,21 @@ const Services = () => {
           <Card
             Icon={GiAce}
             title={"Game development"}
-            disc={`As a game developer, I bring digital worlds to life. `}
+            disc={`As a game developer, I bring digital worlds to life. I can make Virtual Reality apps, Augmented Reality apps, 2D and 3D games.`}
           />
         </Slide>
         <Slide direction="up">
           <Card
             Icon={CgWebsite}
             title={"Frontend development"}
-            disc={`Lorem ipsum dolor sit amet consectetur 
-                adipisicing elit. Commodi et asperiores cum exercitationem officia rem amet minus magnam? Cum, voluptatem?`}
+            disc={`As a front-end developer, my focus is on turning design concepts into visually stunning websites, ensuring that the user experience is seamless and captivating.`}
           />
         </Slide>
         <Slide direction="right">
           <Card
             Icon={BiAbacus}
             title={"Backend development"}
-            disc={`Lorem ipsum dolor sit amet consectetur 
-                adipisicing elit. Commodi et asperiores cum exercitationem officia rem amet minus magnam? Cum, voluptatem?`}
+            disc={`As a back-end developer, I build the foundation of web applications, ensuring they run smoothly and securely behind the scenes.`}
           />
         </Slide>
       </Cards>

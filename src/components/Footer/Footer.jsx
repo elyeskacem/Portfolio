@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { MdAlternateEmail } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
@@ -7,8 +7,22 @@ import { AiFillGithub, AiFillLinkedin, AiOutlineArrowUp } from "react-icons/ai";
 import { FiMail, FiPhoneCall } from "react-icons/fi";
 import { Slide, Zoom, Fade } from "react-awesome-reveal";
 import { AiOutlineInstagram, AiFillYoutube } from "react-icons/ai";
+// import { SMTPClient } from "emailjs";
 
 const Footer = () => {
+  const form = useRef();
+
+  // const client = new SMTPClient({
+  //   user: "user",
+  //   password: "password",
+  //   host: "smtp.your-email.com",
+  //   ssl: true,
+  // });
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+  };
+
   const scrollUp = () => {
     window.scroll({
       top: 0,
@@ -103,7 +117,7 @@ const Footer = () => {
       </Profile>
       <Form>
         <Slide direction="right">
-          <form>
+          <form ref={form} onSubmit={sendEmail}>
             <div className="name">
               <span>
                 <CgProfile />
