@@ -13,20 +13,40 @@ const Header = () => {
         <h1>Portfolio</h1>
       </Logo>
       <Nav bar={bar}>
-        <span>
+        <span
+          onClick={() => {
+            setBar(!bar);
+          }}
+        >
           <a href="#home">Home</a>
         </span>
-        <span>
+        <span
+          onClick={() => {
+            setBar(!bar);
+          }}
+        >
           <a href="#service">Services</a>
         </span>
-        <span>
+        <span
+          onClick={() => {
+            setBar(!bar);
+          }}
+        >
           <a href="#project">Projects</a>
         </span>
-        <span>
+        <span
+          onClick={() => {
+            setBar(!bar);
+          }}
+        >
           <a href="#client">Honors</a>
         </span>
-        <span>
-          <a href="#footer">Portfolio</a>
+        <span
+          onClick={() => {
+            setBar(!bar);
+          }}
+        >
+          <a href="#footer">Contact</a>
         </span>
       </Nav>
       <div onClick={() => setBar(!bar)} className="bars">

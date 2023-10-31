@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import { MdAlternateEmail } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
@@ -7,11 +7,10 @@ import { AiFillGithub, AiFillLinkedin, AiOutlineArrowUp } from "react-icons/ai";
 import { FiMail, FiPhoneCall } from "react-icons/fi";
 import { Slide, Zoom, Fade } from "react-awesome-reveal";
 import { AiOutlineInstagram, AiFillYoutube } from "react-icons/ai";
+import emailjs from "@emailjs/browser";
+import toast, { Toaster } from "react-hot-toast";
 // import { SMTPClient } from "emailjs";
-
 const Footer = () => {
-  const form = useRef();
-
   // const client = new SMTPClient({
   //   user: "user",
   //   password: "password",
@@ -20,7 +19,30 @@ const Footer = () => {
   // });
 
   const sendEmail = (e) => {
+    toast.loading("Loading...");
+    const data = {
+      name: e.target[0].value,
+      email: e.target[1].value,
+      message: e.target[2].value,
+    };
+    console.log(data);
+
     e.preventDefault();
+    emailjs
+      .send("service_vjb863n", "template_yk7u2ep", data, "5gD_0ucIcIWM-fVnL")
+      .then(
+        (response) => {
+          toast.dismiss();
+          for (let index = 0; index < e.target.length; index++) {
+            e.target[index].value = "";
+          }
+          toast.success("Successfully sent!");
+        },
+        (err) => {
+          toast.dismiss();
+          toast.error("This is an error!");
+        }
+      );
   };
 
   const scrollUp = () => {
@@ -31,9 +53,10 @@ const Footer = () => {
   };
   return (
     <Container id="footer">
+      <Toaster />
       <Profile>
         <Slide direction="left" delay={1}>
-          <h1>Portfolio</h1>
+          <h1>Contact</h1>
         </Slide>
         <div className="address">
           <Slide direction="left">
@@ -117,12 +140,12 @@ const Footer = () => {
       </Profile>
       <Form>
         <Slide direction="right">
-          <form ref={form} onSubmit={sendEmail}>
+          <form onSubmit={sendEmail}>
             <div className="name">
               <span>
                 <CgProfile />
               </span>
-              <input type="text" placeholder="Fullname..." />
+              <input type="text" name="name" placeholder="Fullname..." />
             </div>
             <div className="email">
               <span>
