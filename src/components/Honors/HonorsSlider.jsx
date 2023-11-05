@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import "./style.css";
 // import { IoIosQuote } from "react-icons/io";
 // import { AiOutlineStar } from "react-icons/ai";
 
@@ -11,7 +12,17 @@ const HonorsSlider = (props) => {
         <h2>{title}</h2>
       </Header>
       <Body>{disc}</Body>
-      <img style={{ width: "100%" }} src={img_url} alt={title} />
+      <img
+        style={{
+          width: "100%",
+          height: 300,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          objectFit: "cover",
+        }}
+        src={img_url}
+        alt={title}
+      />
       <Footer></Footer>
     </Container>
   );
@@ -44,6 +55,9 @@ const Body = styled.p`
   font-size: 0.8rem;
   margin-bottom: 1.5rem;
   margin-top: 1rem;
+  overflow-y: scroll;
+  height: 105px;
+  padding-right: 5px;
 `;
 const Footer = styled.div`
   display: flex;
