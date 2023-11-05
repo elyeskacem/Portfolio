@@ -43,7 +43,7 @@ let data = [
   {
     img: "https://res.cloudinary.com/dkzq4epny/image/upload/v1699095397/eytnmunvh6hrjn3gd8xh.png",
     disc: "AR Portfolio : I created my CV with AR. By detecting my photo , you will see an interactive UI that describe my profile.",
-    demo: "/",
+    demo: "https://youtu.be/nayGb0I30rg?si=_irESmONM-u1F68x&t=218",
   },
 
   {
