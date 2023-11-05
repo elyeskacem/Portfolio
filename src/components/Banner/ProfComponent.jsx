@@ -12,7 +12,7 @@ const ProfComponent = () => {
     const pdfUrl = "CV.pdf";
     const link = document.createElement("a");
     link.href = pdfUrl;
-    link.download = "document.pdf"; // specify the filename
+    link.download = "Elyes Kacem CV.pdf"; // specify the filename
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -32,9 +32,9 @@ const ProfComponent = () => {
             and user-friendly websites, driven by innovation and a strong
             foundation in computer science.
           </p>
-          <a target="_blank" href="/CV.pdf">
-            <button onClick={onButtonClick}>Download CV</button>
-          </a>
+
+          <button onClick={onButtonClick}>Download CV</button>
+
           <Social>
             <p>Visit my</p>
             <div className="social-icons">
