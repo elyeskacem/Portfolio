@@ -8,6 +8,15 @@ import { Slide } from "react-awesome-reveal";
 import Me from "../../assets/images/me.png";
 
 const ProfComponent = () => {
+  const onButtonClick = () => {
+    const pdfUrl = "CV.pdf";
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = "document.pdf"; // specify the filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <Container id="home">
       <Slide direction="left">
@@ -24,7 +33,7 @@ const ProfComponent = () => {
             foundation in computer science.
           </p>
           <a target="_blank" href="/CV.pdf">
-            <button>Checkout my CV (PDF)</button>
+            <button onClick={onButtonClick}>Download CV</button>
           </a>
           <Social>
             <p>Visit my</p>
