@@ -48,8 +48,8 @@ let data = [
 
   {
     img: "https://res.cloudinary.com/dkzq4epny/image/upload/v1698774150/gkcb0raxpndmpn9xpeqy.png",
-    disc: "potential hazards an electrical worker may encounter when neglecting safety precautions and requirements. ",
-    demo: "/",
+    disc: "VR project that simulates potential hazards an electrical worker may encounter when neglecting safety precautions and requirements.",
+    demo: "https://youtu.be/RE_3WBZr6Uk",
   },
 ];
 
