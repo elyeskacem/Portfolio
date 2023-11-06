@@ -1,14 +1,27 @@
 {
   "files": {
     "main.css": "./static/css/main.66be84a2.css",
-    "main.js": "./static/js/main.19b81c21.js",
+    "main.js": "./static/js/main.ccd2f351.js",
     "static/media/me.png": "./static/media/me.a785a4b53079710a7edf.png",
+    "static/media/2dtruck.jpg": "./static/media/2dtruck.37ddf2bf0908e5bb73f0.jpg",
+    "static/media/castleescape.jpg": "./static/media/castleescape.9248cbb4985bfef0cf07.jpg",
+    "static/media/win2.jpg": "./static/media/win2.0e5f2431e26a15c819e1.jpg",
+    "static/media/win1.jpg": "./static/media/win1.5d6e8ddabd31528b67d5.jpg",
+    "static/media/mazerunner.jpg": "./static/media/mazerunner.4e530e5dabfee3357499.jpg",
+    "static/media/vrspace.jpg": "./static/media/vrspace.4632254117091a5dc6e8.jpg",
+    "static/media/arshoot.jpg": "./static/media/arshoot.a6bdf4b5b1c558d07415.jpg",
+    "static/media/winkid.jpg": "./static/media/winkid.7e513a6c8f115394f6b1.jpg",
+    "static/media/ggj.jpg": "./static/media/ggj.778b13fa04fb7f3881e1.jpg",
+    "static/media/vrselim.jpg": "./static/media/vrselim.77712bff5272303249f8.jpg",
+    "static/media/cvar.jpg": "./static/media/cvar.6bbf424489925db73f91.jpg",
+    "static/media/Screenshot 2023-10-31 201936.jpg": "./static/media/Screenshot 2023-10-31 201936.9d0900329b2e30c8fe29.jpg",
+    "static/media/ggj2k22.jpg": "./static/media/ggj2k22.7434af50bab39df85fa8.jpg",
     "index.html": "./index.html",
     "main.66be84a2.css.map": "./static/css/main.66be84a2.css.map",
-    "main.19b81c21.js.map": "./static/js/main.19b81c21.js.map"
+    "main.ccd2f351.js.map": "./static/js/main.ccd2f351.js.map"
   },
   "entrypoints": [
     "static/css/main.66be84a2.css",
-    "static/js/main.19b81c21.js"
+    "static/js/main.ccd2f351.js"
   ]
 }
