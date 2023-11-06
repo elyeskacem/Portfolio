@@ -4,33 +4,33 @@ import styled from "styled-components";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Slide } from "react-awesome-reveal";
 import HonorsSlider from "./HonorsSlider";
+import GGJ from "../../assets/images/ScreenShots/ggj.jpg";
+import Space from "../../assets/images/ScreenShots/win2.jpg";
+import Win1 from "../../assets/images/ScreenShots/win1.jpg";
+import WinKid from "../../assets/images/ScreenShots/winkid.jpg";
 
 let clients = [
   {
     title: "1st Prize at Space Hack Tunisia - 2023",
-    img_url:
-      "https://res.cloudinary.com/dkzq4epny/image/upload/v1698782272/yeklycspipzynlhyakbs.jpg",
+    img_url: Space,
 
     disc: `I teamed up with three of my classmates for an exciting hackathon adventure. In just 24 hours, we managed to create a captivating VR application that simulates the daily activities of an astronaut during their missions. This groundbreaking application serves as an introductory gateway for those eager to embark on space adventures, offering a unique and immersive training experience.`,
   },
   {
     title: "1st Prize at Coding Universe - 2023",
-    img_url:
-      "https://res.cloudinary.com/dkzq4epny/image/upload/v1698782275/ej66sz4ehozomj9j33cm.jpg",
+    img_url: Win1,
 
     disc: `My friend and I collaborated on a project with a budget of SGD 9, dedicated to addressing workplace safety concerns during his initial training on machine operation. Together, we developed an innovative AR application designed to simulate the machine's functions. This application will be used to provide comprehensive training to operators, helping them avoid accidents and ensuring a safer work environment.`,
   },
   {
     title: "Best 10 Project at GGJ Tunisia 2K22",
-    img_url:
-      "https://res.cloudinary.com/dkzq4epny/image/upload/v1698783992/x10dhrlafesgxcjkdd1z.png",
+    img_url: GGJ,
 
     disc: `My friend and I took part in an online event called the Global Game Jam. The theme of the event was "Duality." During this jam, we developed a mobile game which we aptly named "Dual Wars." This game features a collection of mini-games designed for two players who share the same screen. This experience taught us valuable lessons in patience and provided us with numerous insights and skills.`,
   },
   {
     title: "1st Place at Smart Kids Competition - 2010",
-    img_url:
-      "https://res.cloudinary.com/dkzq4epny/image/upload/v1699148361/hasb340uyioljlk6s0af.png",
+    img_url: WinKid,
 
     disc: `I was an enthusiastic member of the Smart Kids Club, an educational platform that taught us the art of performing speedy calculations through the application of algorithms. We eagerly absorbed these mathematical skills and put them into practice using various techniques. Upon mastering three modules, the club arranged a competition that gathered participants from cities across Tunisia, each competing within their respective modules. I was honored to secure the top position in Chapter 3, showcasing my proficiency in this fascinating realm of mathematics.`,
   },
