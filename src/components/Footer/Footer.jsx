@@ -63,7 +63,8 @@ const Footer = () => {
             <h1>Address:</h1>
           </Slide>
           <Slide direction="left">
-            <p>Manzl Jmil, Bizerte, Tunisia</p>
+            <p>Manouba, Tunisia</p>
+            <p>Bizerte, Tunisia</p>
           </Slide>
         </div>
         <div className="links">
