@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.66be84a2.css",
-    "main.js": "./static/js/main.ccd2f351.js",
+    "main.js": "./static/js/main.c6fadb1b.js",
     "static/media/me.png": "./static/media/me.a785a4b53079710a7edf.png",
     "static/media/2dtruck.jpg": "./static/media/2dtruck.37ddf2bf0908e5bb73f0.jpg",
     "static/media/castleescape.jpg": "./static/media/castleescape.9248cbb4985bfef0cf07.jpg",
@@ -18,10 +18,10 @@
     "static/media/ggj2k22.jpg": "./static/media/ggj2k22.7434af50bab39df85fa8.jpg",
     "index.html": "./index.html",
     "main.66be84a2.css.map": "./static/css/main.66be84a2.css.map",
-    "main.ccd2f351.js.map": "./static/js/main.ccd2f351.js.map"
+    "main.c6fadb1b.js.map": "./static/js/main.c6fadb1b.js.map"
   },
   "entrypoints": [
     "static/css/main.66be84a2.css",
-    "static/js/main.ccd2f351.js"
+    "static/js/main.c6fadb1b.js"
   ]
 }
