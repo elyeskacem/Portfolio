@@ -6,6 +6,7 @@ import { AiOutlineInstagram, AiFillGithub } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 import { Slide } from "react-awesome-reveal";
 import Me from "../../assets/images/me.png";
+import Stack from "../../assets/images/stack.png";
 
 const ProfComponent = () => {
   const onButtonClick = () => {
@@ -57,6 +58,14 @@ const ProfComponent = () => {
                   href="https://www.linkedin.com/in/elyeskacem/"
                 >
                   <FaLinkedinIn />
+                </a>
+              </span>
+              <span>
+                <a
+                  target="_blank"
+                  href="https://stackoverflow.com/users/15450130/elyes-kacem"
+                >
+                  <img src={Stack} width={18} alt="" />
                 </a>
               </span>
             </div>

@@ -9,6 +9,7 @@ import { Slide, Zoom, Fade } from "react-awesome-reveal";
 import { AiOutlineInstagram, AiFillYoutube } from "react-icons/ai";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
+import Stack from "../../assets/images/stack.png";
 // import { SMTPClient } from "emailjs";
 const Footer = () => {
   // const client = new SMTPClient({
@@ -128,6 +129,16 @@ const Footer = () => {
                   href="https://www.youtube.com/channel/UCcAgtI4-m4f0uyxuzMSO6cw"
                 >
                   <AiFillYoutube />
+                </a>
+              </span>
+            </Zoom>
+            <Zoom>
+              <span>
+                <a
+                  target="_blank"
+                  href="https://stackoverflow.com/users/15450130/elyes-kacem"
+                >
+                  <img src={Stack} width={18} alt="" />
                 </a>
               </span>
             </Zoom>
