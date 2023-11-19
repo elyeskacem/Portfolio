@@ -27,7 +27,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "product": "git push && npm run deploy",
-    "urgent": "git add .&& git commit -m \"adding stack over flow\" && git push && npm run deploy"
+    "urgent": "git add .&& git commit -m \"updating CV\" && git push && npm run deploy"
   },
   "eslintConfig": {
     "extends": [
