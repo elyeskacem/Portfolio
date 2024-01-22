@@ -12,6 +12,7 @@ import MAZERUNNER from "../../assets/images/ScreenShots/mazerunner.jpg";
 import KITCHEN from "../../assets/images/ScreenShots/Screenshot 2023-10-31 201936.jpg";
 import VRSELIM from "../../assets/images/ScreenShots/vrselim.jpg";
 import VRSPACE from "../../assets/images/ScreenShots/vrspace.jpg";
+import WAR from "../../assets/images/ScreenShots/war.png";
 
 let data = [
   {
@@ -19,11 +20,7 @@ let data = [
     disc: "VR application that simulates the daily activities of an astronaut during their missions.",
     demo: "https://youtu.be/S7E82aBW6-M",
   },
-  {
-    img: MAZERUNNER,
-    disc: "3D Maze Game that I made as project in my university, and I tried to make it looks like the movie : Mazer Runner.",
-    demo: "https://youtu.be/7WvUzBu9X8s",
-  },
+
   {
     img: CASTLEESCAPE,
     disc: "3D Game of Castle escape : you need to resolve the puzzle to get outside of the castle.",
@@ -33,6 +30,11 @@ let data = [
     img: TRUCK,
     disc: "2D Game for a Caterpillar truck : You need to transport the rocks to the otherside of the map before the time finish.",
     demo: "https://youtu.be/pWjeMm64jpo",
+  },
+  {
+    img: MAZERUNNER,
+    disc: "3D Maze Game that I made as project in my university, and I tried to make it looks like the movie : Mazer Runner.",
+    demo: "https://youtu.be/7WvUzBu9X8s",
   },
   {
     img: GGJ2k22,
@@ -59,6 +61,11 @@ let data = [
     img: VRSELIM,
     disc: "VR project that simulates potential hazards an electrical worker may encounter when neglecting safety precautions and requirements.",
     demo: "https://youtu.be/RE_3WBZr6Uk",
+  },
+  {
+    img: WAR,
+    disc: "VR application that simulates the aspect of Palestine before and after the war.",
+    demo: "https://youtu.be/coBBQ_2yao8",
   },
 ];
 
