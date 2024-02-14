@@ -6,6 +6,7 @@ import styled from "styled-components";
 import TRUCK from "../../assets/images/ScreenShots/2dtruck.jpg";
 import ARSHOOT1 from "../../assets/images/ScreenShots/arshoot.jpg";
 import CASTLEESCAPE from "../../assets/images/ScreenShots/castleescape.jpg";
+import MakeMeLaugh from "../../assets/images/ScreenShots/mml.jpg";
 import CVAR from "../../assets/images/ScreenShots/cvar.jpg";
 import GGJ2k22 from "../../assets/images/ScreenShots/ggj2k22.jpg";
 import MAZERUNNER from "../../assets/images/ScreenShots/mazerunner.jpg";
@@ -21,6 +22,11 @@ let data = [
     demo: "https://youtu.be/S7E82aBW6-M",
   },
 
+  {
+    img: MakeMeLaugh,
+    disc: "VR Application : You need to make the king laugh, or you die. - Collaborative project, made in Global Game Jam 2024",
+    demo: "https://youtu.be/n25m8NGV0_M",
+  },
   {
     img: CASTLEESCAPE,
     disc: "3D Game of Castle escape : you need to resolve the puzzle to get outside of the castle.",
