@@ -3,28 +3,107 @@ import styled from "styled-components";
 import SliderComp from "./Slider";
 import { Zoom } from "react-awesome-reveal";
 
+import TRUCK from "../../assets/images/ScreenShots/2dtruck.jpg";
+import ARSHOOT1 from "../../assets/images/ScreenShots/arshoot.jpg";
+import CASTLEESCAPE from "../../assets/images/ScreenShots/castleescape.jpg";
+import MakeMeLaugh from "../../assets/images/ScreenShots/mml.jpg";
+import CVAR from "../../assets/images/ScreenShots/cvar.jpg";
+import GGJ2k22 from "../../assets/images/ScreenShots/ggj2k22.jpg";
+import MAZERUNNER from "../../assets/images/ScreenShots/mazerunner.jpg";
+import KITCHEN from "../../assets/images/ScreenShots/Screenshot 2023-10-31 201936.jpg";
+import VRSELIM from "../../assets/images/ScreenShots/vrselim.jpg";
+import VRSPACE from "../../assets/images/ScreenShots/vrspace.jpg";
+import WAR from "../../assets/images/ScreenShots/war.png";
+import Project from "./Project";
+
+let data = [
+  {
+    img: VRSPACE,
+    disc: "VR application that simulates the daily activities of an astronaut during their missions.",
+    demo: "https://youtu.be/S7E82aBW6-M",
+  },
+
+  {
+    img: MakeMeLaugh,
+    disc: "VR Application : You need to make the king laugh, or you die. - Collaborative project, made in Global Game Jam 2024",
+    demo: "https://youtu.be/n25m8NGV0_M",
+  },
+  {
+    img: CASTLEESCAPE,
+    disc: "3D Game of Castle escape : you need to resolve the puzzle to get outside of the castle.",
+    demo: "https://youtu.be/Hi_71OzzvjE",
+  },
+  {
+    img: TRUCK,
+    disc: "2D Game for a Caterpillar truck : You need to transport the rocks to the otherside of the map before the time finish.",
+    demo: "https://youtu.be/pWjeMm64jpo",
+  },
+  {
+    img: MAZERUNNER,
+    disc: "3D Maze Game that I made as project in my university, and I tried to make it looks like the movie : Mazer Runner.",
+    demo: "https://youtu.be/7WvUzBu9X8s",
+  },
+  {
+    img: GGJ2k22,
+    disc: "2D Game : Collaborated project during the GGJ 2k22 : it has many minigames for two players , shared screen.",
+    demo: "https://youtu.be/G7H2QHb9RDs",
+  },
+  {
+    img: ARSHOOT1,
+    disc: "AR Shooting Game : You need to kill the monsters before they distroy all houses of the map.",
+    demo: "https://youtu.be/cUN-HRnO4Ak",
+  },
+  {
+    img: KITCHEN,
+    disc: "AR Shooting Game : You have 4 lifes. You need to shoot all foods before it disappear, otherwise you will lsoe a life.",
+    demo: "https://www.youtube.com/watch?v=ChMItHTW-K0",
+  },
+  {
+    img: CVAR,
+    disc: "AR Portfolio : I created my CV with AR. By detecting my photo , you will see an interactive UI that describe my profile.",
+    demo: "https://youtu.be/nayGb0I30rg?si=_irESmONM-u1F68x&t=218",
+  },
+
+  {
+    img: VRSELIM,
+    disc: "VR project that simulates potential hazards an electrical worker may encounter when neglecting safety precautions and requirements.",
+    demo: "https://youtu.be/RE_3WBZr6Uk",
+  },
+  {
+    img: WAR,
+    disc: "VR application that simulates the aspect of Palestine before and after the war.",
+    demo: "https://youtu.be/coBBQ_2yao8",
+  },
+];
+
 const Projects = () => {
+  const [showAllProjects, SetshowAllProjects] = React.useState(false);
+  let sliderProject = "";
+  sliderProject = data.map((item, i) => <Project item={item} key={i} />);
   return (
     <Container id="project">
       <Zoom>
         <h1>
           Recent <span className="green">Projects</span>
         </h1>
-        <p>These are some of my Gaming projects.</p>
+        <p>These are some of my 3D projects.</p>
       </Zoom>
-      <Slide>
-        <SliderComp />
-      </Slide>
+      {showAllProjects ? (
+        <>{sliderProject}</>
+      ) : (
+        <Slide>
+          <SliderComp data={data} />
+        </Slide>
+      )}
       <br />
-      {/* <Zoom>
-        <h1>
-          Web <span className="green">Projects</span>
-        </h1>
-        <p>These are some of my Web projects.</p>
-      </Zoom>
-      <Slide>
-        <SliderComp />
-      </Slide> */}
+      <b
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          SetshowAllProjects(!showAllProjects);
+        }}
+      >
+        {showAllProjects ? "See less" : "See all"}
+      </b>
     </Container>
   );
 };
