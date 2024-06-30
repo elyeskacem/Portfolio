@@ -3,6 +3,8 @@ import styled from "styled-components";
 import SliderComp from "./Slider";
 import { Zoom } from "react-awesome-reveal";
 
+import Grid from "@mui/material/Grid";
+
 import TRUCK from "../../assets/images/ScreenShots/2dtruck.jpg";
 import ARSHOOT1 from "../../assets/images/ScreenShots/arshoot.jpg";
 import CASTLEESCAPE from "../../assets/images/ScreenShots/castleescape.jpg";
@@ -79,7 +81,11 @@ let data = [
 const Projects = () => {
   const [showAllProjects, SetshowAllProjects] = React.useState(false);
   let sliderProject = "";
-  sliderProject = data.map((item, i) => <Project item={item} key={i} />);
+  sliderProject = data.map((item, i) => (
+    <Grid key={i}>
+      <Project item={item} />
+    </Grid>
+  ));
   return (
     <Container id="project">
       <Zoom>
@@ -89,7 +95,13 @@ const Projects = () => {
         <p>These are some of my 3D projects.</p>
       </Zoom>
       {showAllProjects ? (
-        <>{sliderProject}</>
+        <>
+          {data.map((item, i) => (
+            <>
+              <Project w={50} item={item} />
+            </>
+          ))}
+        </>
       ) : (
         <Slide>
           <SliderComp data={data} />

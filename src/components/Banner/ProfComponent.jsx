@@ -26,16 +26,15 @@ const ProfComponent = () => {
             Hello <span className="green">I'am</span>
           </h4>
           <h1 className="green">Elyes Kacem</h1>
-          <h3>Computer Science Engineering Student</h3>
+          <h3>Computer Science Engineer</h3>
+
           <p>
-            I'm a computer science engineering student, proficient in both game
-            and web development. My passion lies in creating captivating games
-            and user-friendly websites, driven by innovation and a strong
-            foundation in computer science.
+            I'm a computer science engineer, proficient in both game and web
+            development. My passion lies in creating captivating games and
+            user-friendly websites, driven by innovation and a strong foundation
+            in computer science.
           </p>
-
           <button onClick={onButtonClick}>Download CV</button>
-
           <Social>
             <p>Visit my</p>
             <div className="social-icons">
