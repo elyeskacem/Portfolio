@@ -16,6 +16,9 @@ import KITCHEN from "../../assets/images/ScreenShots/Screenshot 2023-10-31 20193
 import VRSELIM from "../../assets/images/ScreenShots/vrselim.jpg";
 import VRSPACE from "../../assets/images/ScreenShots/vrspace.jpg";
 import WAR from "../../assets/images/ScreenShots/war.png";
+import CLOTHSIMULATION from "../../assets/images/ScreenShots/cloth simulation.jpg";
+import SKINSIMULATION from "../../assets/images/ScreenShots/skin simulation.jpg";
+import AVAXIAOTC from "../../assets/images/ScreenShots/otc avaxia.jpg";
 import Project from "./Project";
 
 let data = [
@@ -30,15 +33,32 @@ let data = [
     disc: "VR Application : You need to make the king laugh, or you die. - Collaborative project, made in Global Game Jam 2024",
     demo: "https://youtu.be/n25m8NGV0_M",
   },
+
   {
     img: CASTLEESCAPE,
     disc: "3D Game of Castle escape : you need to resolve the puzzle to get outside of the castle.",
     demo: "https://youtu.be/Hi_71OzzvjE",
   },
   {
+    img: AVAXIAOTC,
+    disc: "Online training center VR and desktop app. You can navigate in courses and make subscriptions, and have a real time session with other ( multiplayer ).",
+    demo: "https://youtu.be/40cRxQzAc2g",
+  },
+  {
     img: TRUCK,
     disc: "2D Game for a Caterpillar truck : You need to transport the rocks to the otherside of the map before the time finish.",
     demo: "https://youtu.be/pWjeMm64jpo",
+  },
+
+  {
+    img: SKINSIMULATION,
+    disc: "Skin simulation based on scientific articles, Coding it from scratch, made with Unity",
+    demo: "https://youtu.be/iQHTSLWyh4E",
+  },
+  {
+    img: CLOTHSIMULATION,
+    disc: "Flag simulation based on scientific articles, Coding it from scratch, made with Unity",
+    demo: "https://youtu.be/dJ9atuVhLMs",
   },
   {
     img: MAZERUNNER,
