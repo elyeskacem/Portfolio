@@ -19,6 +19,7 @@ import WAR from "../../assets/images/ScreenShots/war.png";
 import CLOTHSIMULATION from "../../assets/images/ScreenShots/cloth simulation.jpg";
 import SKINSIMULATION from "../../assets/images/ScreenShots/skin simulation.jpg";
 import AVAXIAOTC from "../../assets/images/ScreenShots/otc avaxia.jpg";
+import BLACKHOLESIMULATION from "../../assets/images/ScreenShots/blackhole.jpg";
 import Project from "./Project";
 
 let data = [
@@ -26,6 +27,11 @@ let data = [
     img: VRSPACE,
     disc: "VR application that simulates the daily activities of an astronaut during their missions.",
     demo: "https://youtu.be/S7E82aBW6-M",
+  },
+  {
+    img: BLACKHOLESIMULATION,
+    disc: "Black hole simulation , collaborated with expert from Illinois State University",
+    demo: "https://youtu.be/DVKuLI-FX1s",
   },
 
   {
