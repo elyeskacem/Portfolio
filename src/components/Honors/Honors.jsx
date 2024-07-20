@@ -8,13 +8,27 @@ import GGJ from "../../assets/images/ScreenShots/ggj.jpg";
 import Space from "../../assets/images/ScreenShots/win2.jpg";
 import Win1 from "../../assets/images/ScreenShots/win1.jpg";
 import WinKid from "../../assets/images/ScreenShots/winkid.jpg";
+import MAJOR2023 from "../../assets/images/major2023.jpg";
+import MAJOR2024 from "../../assets/images/major2024.jpg";
 
 let clients = [
+  {
+    title: "Major of the Promotion 2024",
+    img_url: MAJOR2024,
+
+    disc: `I am thrilled to announce that I have once again been honored as the major of the promotion for the class of 2024 at my university. This consecutive recognition underscores my unwavering commitment to academic excellence and continuous personal growth. Achieving this distinction for a second year in a row is a profound honor and a source of great pride. It further inspires me to pursue my goals with even greater determination and dedication.`,
+  },
   {
     title: "1st Prize at Space Hack Tunisia - 2023",
     img_url: Space,
 
     disc: `I teamed up with three of my classmates for an exciting hackathon adventure. In just 24 hours, we managed to create a captivating VR application that simulates the daily activities of an astronaut during their missions. This groundbreaking application serves as an introductory gateway for those eager to embark on space adventures, offering a unique and immersive training experience.`,
+  },
+  {
+    title: "Major of the Promotion 2023",
+    img_url: MAJOR2023,
+
+    disc: `I am proud to share that I was honored as the major of the promotion for the class of 2023 at my university. This recognition reflects my dedication, hard work, and commitment to academic excellence throughout my studies. It is a testament to the support and encouragement I received from my professors, peers, and family. This achievement motivates me to continue striving for excellence in all my future endeavors.`,
   },
   {
     title: "1st Prize at Coding Universe - 2023",
