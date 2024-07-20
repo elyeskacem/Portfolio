@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Project = (props) => {
   const { img, disc, demo } = props.item;
   return (
-    <Container className="project">
+    <Container className="project" style={props.style}>
       <img src={img} alt="project" />
       <div className="disc">
         <h1>Description</h1>

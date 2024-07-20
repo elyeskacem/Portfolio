@@ -121,13 +121,25 @@ const Projects = () => {
         <p>These are some of my 3D projects.</p>
       </Zoom>
       {showAllProjects ? (
-        <>
+        <Grid container spacing={2} justifyContent="center" alignItems="center">
           {data.map((item, i) => (
-            <>
-              <Project w={50} item={item} />
-            </>
+            // <Grid container>
+            //   <Grid item xs={3}>
+            //     <Project
+            //       style={{ maxWidth: 400, minWidth: 350, margin: 10 }}
+            //       item={item}
+            //     />
+            //   </Grid>
+            // </Grid>
+
+            <Grid item>
+              <Project
+                style={{ maxWidth: 400, minWidth: 350, margin: 10 }}
+                item={item}
+              />
+            </Grid>
           ))}
-        </>
+        </Grid>
       ) : (
         <Slide>
           <SliderComp data={data} />
@@ -140,7 +152,7 @@ const Projects = () => {
           SetshowAllProjects(!showAllProjects);
         }}
       >
-        {showAllProjects ? "See less" : "See all"}
+        {showAllProjects ? "See less <<" : "See all >>"}
       </b>
     </Container>
   );
