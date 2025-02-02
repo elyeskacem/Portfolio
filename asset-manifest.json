@@ -1,9 +1,10 @@
 {
   "files": {
     "main.css": "./static/css/main.66be84a2.css",
-    "main.js": "./static/js/main.9eae291a.js",
+    "main.js": "./static/js/main.56748eb5.js",
     "static/media/major2024.jpg": "./static/media/major2024.ee2b8b9ff325e9f92c5b.jpg",
     "static/media/war.png": "./static/media/war.34793ea33cc574eff617.png",
+    "static/media/ggj 2025.png": "./static/media/ggj 2025.edeea6161d52f1881587.png",
     "static/media/major2023.jpg": "./static/media/major2023.8ec8becdb5beb590c4af.jpg",
     "static/media/skin simulation.jpg": "./static/media/skin simulation.cb70b68ebd74f1af98a1.jpg",
     "static/media/me.png": "./static/media/me.a785a4b53079710a7edf.png",
@@ -14,6 +15,7 @@
     "static/media/win1.jpg": "./static/media/win1.5d6e8ddabd31528b67d5.jpg",
     "static/media/mazerunner.jpg": "./static/media/mazerunner.4e530e5dabfee3357499.jpg",
     "static/media/vrspace.jpg": "./static/media/vrspace.4632254117091a5dc6e8.jpg",
+    "static/media/FPGGJ2025.jpg": "./static/media/FPGGJ2025.0e7fde08762c488ad613.jpg",
     "static/media/otc avaxia.jpg": "./static/media/otc avaxia.97ada126f50d5c7f665e.jpg",
     "static/media/arshoot.jpg": "./static/media/arshoot.a6bdf4b5b1c558d07415.jpg",
     "static/media/mml.jpg": "./static/media/mml.0ed2e3567ebc6e70bbcb.jpg",
@@ -26,10 +28,10 @@
     "static/media/ggj2k22.jpg": "./static/media/ggj2k22.7434af50bab39df85fa8.jpg",
     "index.html": "./index.html",
     "main.66be84a2.css.map": "./static/css/main.66be84a2.css.map",
-    "main.9eae291a.js.map": "./static/js/main.9eae291a.js.map"
+    "main.56748eb5.js.map": "./static/js/main.56748eb5.js.map"
   },
   "entrypoints": [
     "static/css/main.66be84a2.css",
-    "static/js/main.9eae291a.js"
+    "static/js/main.56748eb5.js"
   ]
 }
