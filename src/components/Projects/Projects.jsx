@@ -20,6 +20,7 @@ import CLOTHSIMULATION from "../../assets/images/ScreenShots/cloth simulation.jp
 import SKINSIMULATION from "../../assets/images/ScreenShots/skin simulation.jpg";
 import AVAXIAOTC from "../../assets/images/ScreenShots/otc avaxia.jpg";
 import BLACKHOLESIMULATION from "../../assets/images/ScreenShots/blackhole.jpg";
+import GGJ2025 from "../../assets/images/ScreenShots/ggj 2025.png";
 import Project from "./Project";
 
 let data = [
@@ -28,6 +29,7 @@ let data = [
     disc: "VR application that simulates the daily activities of an astronaut during their missions.",
     demo: "https://youtu.be/S7E82aBW6-M",
   },
+  
   {
     img: BLACKHOLESIMULATION,
     disc: "Black hole simulation , collaborated with expert from Illinois State University",
@@ -38,6 +40,11 @@ let data = [
     img: MakeMeLaugh,
     disc: "VR Application : You need to make the king laugh, or you die. - Collaborative project, made in Global Game Jam 2024",
     demo: "https://youtu.be/n25m8NGV0_M",
+  },
+  {
+    img: GGJ2025,
+    disc: "Battle Royal VR Game - Collaborative project, made in Global Game Jam 2025, 1st prize winner.",
+    demo: "https://youtu.be/Xp3_AxMdhGI",
   },
 
   {

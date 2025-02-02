@@ -10,8 +10,15 @@ import Win1 from "../../assets/images/ScreenShots/win1.jpg";
 import WinKid from "../../assets/images/ScreenShots/winkid.jpg";
 import MAJOR2023 from "../../assets/images/major2023.jpg";
 import MAJOR2024 from "../../assets/images/major2024.jpg";
+import FPGGJ2025 from "../../assets/images/FPGGJ2025.jpg";
 
 let clients = [
+  {
+    title: "1st Prize at Global Game Jam Tunisia - 2025",
+    img_url: FPGGJ2025,
+
+    disc: `I'm so glad to have the 1st prize with my brave team ISAMMerse on the Global Game Jam Tunisia 2025. We have created a Battle Royal VR Game, where the player can play with his friends in a virtual world. This game was a great challenge for us, and we are so proud of the result. We have learned a lot from this experience, and we are looking forward to the next challenge.`,
+  },
   {
     title: "Major of the Promotion 2024",
     img_url: MAJOR2024,
