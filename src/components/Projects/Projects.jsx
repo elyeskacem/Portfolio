@@ -21,6 +21,7 @@ import SKINSIMULATION from "../../assets/images/ScreenShots/skin simulation.jpg"
 import AVAXIAOTC from "../../assets/images/ScreenShots/otc avaxia.jpg";
 import BLACKHOLESIMULATION from "../../assets/images/ScreenShots/blackhole.jpg";
 import GGJ2025 from "../../assets/images/ScreenShots/ggj 2025.png";
+import CSJAM from "../../assets/images/ScreenShots/Simulate Trading.jpg";
 import Project from "./Project";
 
 let data = [
@@ -56,6 +57,11 @@ let data = [
     img: AVAXIAOTC,
     disc: "Online training center VR and desktop app. You can navigate in courses and make subscriptions, and have a real time session with other ( multiplayer ).",
     demo: "https://youtu.be/40cRxQzAc2g",
+  },
+  {
+    img: CSJAM,
+    disc: "VR Game for simulation of the trading process in the stock market.",
+    demo: "https://youtu.be/AIHstNZeOJk",
   },
   {
     img: TRUCK,

@@ -11,8 +11,15 @@ import WinKid from "../../assets/images/ScreenShots/winkid.jpg";
 import MAJOR2023 from "../../assets/images/major2023.jpg";
 import MAJOR2024 from "../../assets/images/major2024.jpg";
 import FPGGJ2025 from "../../assets/images/FPGGJ2025.jpg";
+import CSJAM from "../../assets/images/CSJAM.jpg";
 
 let clients = [
+  {
+    title: "2nd Prize at CSJAM hackathon 1.0 - 2025",
+    img_url: CSJAM,
+
+    disc: `Our team was thrilled to win second place at the CSJAM Hackathon, a highly competitive game development event. Together, we created a VR simulation game focused on business management, where players can experience the challenges and strategies involved in running a company.`,
+  },
   {
     title: "1st Prize at Global Game Jam Tunisia - 2025",
     img_url: FPGGJ2025,
