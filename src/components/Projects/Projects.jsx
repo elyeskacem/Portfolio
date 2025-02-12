@@ -45,7 +45,7 @@ let data = [
   {
     img: GGJ2025,
     disc: "Battle Royal VR Game - Collaborative project, made in Global Game Jam 2025, 1st prize winner.",
-    demo: "https://youtu.be/Xp3_AxMdhGI",
+    demo: "https://youtu.be/kdAYK2cGZFc",
   },
 
   {
