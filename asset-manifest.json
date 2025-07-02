@@ -1,11 +1,13 @@
 {
   "files": {
     "main.css": "./static/css/main.66be84a2.css",
-    "main.js": "./static/js/main.a2fe2bd2.js",
+    "main.js": "./static/js/main.e114732f.js",
     "static/media/major2024.jpg": "./static/media/major2024.ee2b8b9ff325e9f92c5b.jpg",
     "static/media/war.png": "./static/media/war.34793ea33cc574eff617.png",
+    "static/media/xplore.png": "./static/media/xplore.a04c8a434b2fa17bf967.png",
     "static/media/ggj 2025.png": "./static/media/ggj 2025.edeea6161d52f1881587.png",
     "static/media/major2023.jpg": "./static/media/major2023.8ec8becdb5beb590c4af.jpg",
+    "static/media/TRAINANIM.png": "./static/media/TRAINANIM.37f1aedd5267e08520bf.png",
     "static/media/skin simulation.jpg": "./static/media/skin simulation.cb70b68ebd74f1af98a1.jpg",
     "static/media/me.png": "./static/media/me.a785a4b53079710a7edf.png",
     "static/media/CSJAM.jpg": "./static/media/CSJAM.367ffe1a5a0ee561fd16.jpg",
@@ -13,6 +15,7 @@
     "static/media/cloth simulation.jpg": "./static/media/cloth simulation.0742572be44d451571f4.jpg",
     "static/media/castleescape.jpg": "./static/media/castleescape.9248cbb4985bfef0cf07.jpg",
     "static/media/win2.jpg": "./static/media/win2.0e5f2431e26a15c819e1.jpg",
+    "static/media/HackTheHeritage.jpg": "./static/media/HackTheHeritage.8d192f41de8f594bc1c1.jpg",
     "static/media/win1.jpg": "./static/media/win1.5d6e8ddabd31528b67d5.jpg",
     "static/media/mazerunner.jpg": "./static/media/mazerunner.4e530e5dabfee3357499.jpg",
     "static/media/vrspace.jpg": "./static/media/vrspace.4632254117091a5dc6e8.jpg",
@@ -30,10 +33,10 @@
     "static/media/ggj2k22.jpg": "./static/media/ggj2k22.7434af50bab39df85fa8.jpg",
     "index.html": "./index.html",
     "main.66be84a2.css.map": "./static/css/main.66be84a2.css.map",
-    "main.a2fe2bd2.js.map": "./static/js/main.a2fe2bd2.js.map"
+    "main.e114732f.js.map": "./static/js/main.e114732f.js.map"
   },
   "entrypoints": [
     "static/css/main.66be84a2.css",
-    "static/js/main.a2fe2bd2.js"
+    "static/js/main.e114732f.js"
   ]
 }
