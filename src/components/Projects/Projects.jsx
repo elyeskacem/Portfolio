@@ -22,7 +22,10 @@ import AVAXIAOTC from "../../assets/images/ScreenShots/otc avaxia.jpg";
 import BLACKHOLESIMULATION from "../../assets/images/ScreenShots/blackhole.jpg";
 import GGJ2025 from "../../assets/images/ScreenShots/ggj 2025.png";
 import CSJAM from "../../assets/images/ScreenShots/Simulate Trading.jpg";
+import XPLORE from "../../assets/images/ScreenShots/xplore.png";
+import TRAIN from "../../assets/images/ScreenShots/TRAINANIM.png";
 import Project from "./Project";
+
 
 let data = [
   {
@@ -109,6 +112,16 @@ let data = [
     img: VRSELIM,
     disc: "VR project that simulates potential hazards an electrical worker may encounter when neglecting safety precautions and requirements.",
     demo: "https://youtu.be/RE_3WBZr6Uk",
+  },
+  {
+    img: TRAIN,
+    disc: "3D Rendered video of a toy train, created with blender.",
+    demo: "https://www.youtube.com/watch?v=9TlRgjuhS4I",
+  },
+  {
+    img: XPLORE,
+    disc: "VR project for Salakta musuem, where you can live the history of monuments and interact with them.",
+    demo: "https://youtu.be/mDeKvPb0_Qg",
   },
   {
     img: WAR,

@@ -12,8 +12,19 @@ import MAJOR2023 from "../../assets/images/major2023.jpg";
 import MAJOR2024 from "../../assets/images/major2024.jpg";
 import FPGGJ2025 from "../../assets/images/FPGGJ2025.jpg";
 import CSJAM from "../../assets/images/CSJAM.jpg";
+import HACKTHEHERITAGE from "../../assets/images/HackTheHeritage.jpg";
 
 let clients = [
+  {
+    title: "1st Prize at Hack The Heritage Hackathon - 2025",
+    img_url: HACKTHEHERITAGE ,
+
+    disc: `Our team was thrilled to win first place at the CSJAM Hackathon. We created a VR-powered digital platform that brings the Salakta Archaeological Museum to life through immersive virtual exploration and interactive artifact discovery. It’s our way of combining technology and culture, making history more engaging and accessible.
+
+The award ceremony was held under the patronage of Mrs. Amina Srarfi, Minister of Cultural Affairs, during the 34th Heritage Month and International Museum Day, with the presence of cultural leaders and national heritage officials.
+
+Even though others have already shared about the event, I wanted to take a moment to highlight the journey, the teamwork, and the vision behind what we built.`,
+  },
   {
     title: "2nd Prize at CSJAM hackathon 1.0 - 2025",
     img_url: CSJAM,
