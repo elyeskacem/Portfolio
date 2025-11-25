@@ -13,35 +13,28 @@ import MAJOR2024 from "../../assets/images/major2024.jpg";
 import FPGGJ2025 from "../../assets/images/FPGGJ2025.jpg";
 import CSJAM from "../../assets/images/CSJAM.jpg";
 import HACKTHEHERITAGE from "../../assets/images/HackTheHeritage.jpg";
+import WT from "../../assets/images/wt hack.jpg";
 
 let clients = [
+  
   {
     title: "1st Prize at Hack The Heritage Hackathon - 2025",
     img_url: HACKTHEHERITAGE ,
 
-    disc: `Our team was thrilled to win first place at the CSJAM Hackathon. We created a VR-powered digital platform that brings the Salakta Archaeological Museum to life through immersive virtual exploration and interactive artifact discovery. It’s our way of combining technology and culture, making history more engaging and accessible.
-
-The award ceremony was held under the patronage of Mrs. Amina Srarfi, Minister of Cultural Affairs, during the 34th Heritage Month and International Museum Day, with the presence of cultural leaders and national heritage officials.
-
-Even though others have already shared about the event, I wanted to take a moment to highlight the journey, the teamwork, and the vision behind what we built.`,
+    disc: `Our team was thrilled to win first place at the CSJAM Hackathon. We created a VR-powered digital platform that brings the Salakta Archaeological Museum to life through immersive virtual exploration and interactive artifact discovery. It’s our way of combining technology and culture, making history more engaging and accessible. The award ceremony was held under the patronage of Mrs. Amina Srarfi, Minister of Cultural Affairs, during the 34th Heritage Month and International Museum Day, with the presence of cultural leaders and national heritage officials. Even though others have already shared about the event, I wanted to take a moment to highlight the journey, the teamwork, and the vision behind what we built.`,
   },
-  {
+ {
     title: "2nd Prize at CSJAM hackathon 1.0 - 2025",
     img_url: CSJAM,
 
     disc: `Our team was thrilled to win second place at the CSJAM Hackathon, a highly competitive game development event. Together, we created a VR simulation game focused on business management, where players can experience the challenges and strategies involved in running a company.`,
   },
+   
   {
     title: "1st Prize at Global Game Jam Tunisia - 2025",
     img_url: FPGGJ2025,
 
     disc: `I'm so glad to have the 1st prize with my brave team ISAMMerse on the Global Game Jam Tunisia 2025. We have created a Battle Royal VR Game, where the player can play with his friends in a virtual world. This game was a great challenge for us, and we are so proud of the result. We have learned a lot from this experience, and we are looking forward to the next challenge.`,
-  },
-  {
-    title: "Major of the Promotion 2024",
-    img_url: MAJOR2024,
-
-    disc: `I am thrilled to announce that I have once again been honored as the major of the promotion for the class of 2024 at my university. This consecutive recognition underscores my unwavering commitment to academic excellence and continuous personal growth. Achieving this distinction for a second year in a row is a profound honor and a source of great pride. It further inspires me to pursue my goals with even greater determination and dedication.`,
   },
   {
     title: "1st Prize at Space Hack Tunisia - 2023",
@@ -50,17 +43,32 @@ Even though others have already shared about the event, I wanted to take a momen
     disc: `I teamed up with three of my classmates for an exciting hackathon adventure. In just 24 hours, we managed to create a captivating VR application that simulates the daily activities of an astronaut during their missions. This groundbreaking application serves as an introductory gateway for those eager to embark on space adventures, offering a unique and immersive training experience.`,
   },
   {
-    title: "Major of the Promotion 2023",
-    img_url: MAJOR2023,
-
-    disc: `I am proud to share that I was honored as the major of the promotion for the class of 2023 at my university. This recognition reflects my dedication, hard work, and commitment to academic excellence throughout my studies. It is a testament to the support and encouragement I received from my professors, peers, and family. This achievement motivates me to continue striving for excellence in all my future endeavors.`,
-  },
-  {
     title: "1st Prize at Coding Universe - 2023",
     img_url: Win1,
 
     disc: `My friend and I collaborated on a project with a budget of SGD 9, dedicated to addressing workplace safety concerns during his initial training on machine operation. Together, we developed an innovative AR application designed to simulate the machine's functions. This application will be used to provide comprehensive training to operators, helping them avoid accidents and ensuring a safer work environment.`,
   },
+   
+  {
+    title: "3th Prize at Creative Writing Hackathon - 2025",
+    img_url: WT ,
+
+    disc: `We got the 3th prize at Creative Writing Hackathon. Our team developed an innovative VR application that transforms traditional storytelling into an immersive experience. By integrating virtual reality technology, we aimed to captivate users and bring stories to life in a way that transcends conventional reading methods. This project not only showcased our creativity but also highlighted the potential of VR in enhancing literary experiences.`,
+  },
+  {
+    title: "Major of the Promotion 2024",
+    img_url: MAJOR2024,
+
+    disc: `I am thrilled to announce that I have once again been honored as the major of the promotion for the class of 2024 at my university. This consecutive recognition underscores my unwavering commitment to academic excellence and continuous personal growth. Achieving this distinction for a second year in a row is a profound honor and a source of great pride. It further inspires me to pursue my goals with even greater determination and dedication.`,
+  },
+ 
+  {
+    title: "Major of the Promotion 2023",
+    img_url: MAJOR2023,
+
+    disc: `I am proud to share that I was honored as the major of the promotion for the class of 2023 at my university. This recognition reflects my dedication, hard work, and commitment to academic excellence throughout my studies. It is a testament to the support and encouragement I received from my professors, peers, and family. This achievement motivates me to continue striving for excellence in all my future endeavors.`,
+  },
+  
   {
     title: "Best 10 Project at GGJ Tunisia 2K22",
     img_url: GGJ,

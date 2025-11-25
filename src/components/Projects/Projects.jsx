@@ -15,15 +15,16 @@ import MAZERUNNER from "../../assets/images/ScreenShots/mazerunner.jpg";
 import KITCHEN from "../../assets/images/ScreenShots/Screenshot 2023-10-31 201936.jpg";
 import VRSELIM from "../../assets/images/ScreenShots/vrselim.jpg";
 import VRSPACE from "../../assets/images/ScreenShots/vrspace.jpg";
-import WAR from "../../assets/images/ScreenShots/war.png";
+import WAR from "../../assets/images/ScreenShots/war.jpg";
 import CLOTHSIMULATION from "../../assets/images/ScreenShots/cloth simulation.jpg";
 import SKINSIMULATION from "../../assets/images/ScreenShots/skin simulation.jpg";
 import AVAXIAOTC from "../../assets/images/ScreenShots/otc avaxia.jpg";
 import BLACKHOLESIMULATION from "../../assets/images/ScreenShots/blackhole.jpg";
-import GGJ2025 from "../../assets/images/ScreenShots/ggj 2025.png";
+import GGJ2025 from "../../assets/images/ScreenShots/ggj 2025.jpg";
 import CSJAM from "../../assets/images/ScreenShots/Simulate Trading.jpg";
-import XPLORE from "../../assets/images/ScreenShots/xplore.png";
-import TRAIN from "../../assets/images/ScreenShots/TRAINANIM.png";
+import XPLORE from "../../assets/images/ScreenShots/xplore.jpg";
+import TRAIN from "../../assets/images/ScreenShots/TRAINANIM.jpg";
+import WH from "../../assets/images/ScreenShots/WritingHackathon.jpg";
 import Project from "./Project";
 
 
@@ -33,7 +34,7 @@ let data = [
     disc: "VR application that simulates the daily activities of an astronaut during their missions.",
     demo: "https://youtu.be/S7E82aBW6-M",
   },
-  
+
   {
     img: BLACKHOLESIMULATION,
     disc: "Black hole simulation , collaborated with expert from Illinois State University",
@@ -44,6 +45,12 @@ let data = [
     img: MakeMeLaugh,
     disc: "VR Application : You need to make the king laugh, or you die. - Collaborative project, made in Global Game Jam 2024",
     demo: "https://youtu.be/n25m8NGV0_M",
+  },
+
+  {
+    img: WH,
+    disc: "VR Application for virtual library where you can select a book and live the story inside it.",
+    demo: "https://youtu.be/FGO2_8-W5xI",
   },
   {
     img: GGJ2025,
