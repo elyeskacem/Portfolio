@@ -1,13 +1,10 @@
 {
   "files": {
     "main.css": "./static/css/main.66be84a2.css",
-    "main.js": "./static/js/main.e114732f.js",
+    "main.js": "./static/js/main.17c7fb7f.js",
     "static/media/major2024.jpg": "./static/media/major2024.ee2b8b9ff325e9f92c5b.jpg",
-    "static/media/war.png": "./static/media/war.34793ea33cc574eff617.png",
-    "static/media/xplore.png": "./static/media/xplore.a04c8a434b2fa17bf967.png",
-    "static/media/ggj 2025.png": "./static/media/ggj 2025.edeea6161d52f1881587.png",
     "static/media/major2023.jpg": "./static/media/major2023.8ec8becdb5beb590c4af.jpg",
-    "static/media/TRAINANIM.png": "./static/media/TRAINANIM.37f1aedd5267e08520bf.png",
+    "static/media/wt hack.jpg": "./static/media/wt hack.3779dbeffe4c13abf93f.jpg",
     "static/media/skin simulation.jpg": "./static/media/skin simulation.cb70b68ebd74f1af98a1.jpg",
     "static/media/me.png": "./static/media/me.a785a4b53079710a7edf.png",
     "static/media/CSJAM.jpg": "./static/media/CSJAM.367ffe1a5a0ee561fd16.jpg",
@@ -23,20 +20,25 @@
     "static/media/Simulate Trading.jpg": "./static/media/Simulate Trading.d571f6c489a471f1bbba.jpg",
     "static/media/otc avaxia.jpg": "./static/media/otc avaxia.97ada126f50d5c7f665e.jpg",
     "static/media/arshoot.jpg": "./static/media/arshoot.a6bdf4b5b1c558d07415.jpg",
+    "static/media/WritingHackathon.jpg": "./static/media/WritingHackathon.349d7618d5605d1162b3.jpg",
     "static/media/mml.jpg": "./static/media/mml.0ed2e3567ebc6e70bbcb.jpg",
     "static/media/winkid.jpg": "./static/media/winkid.7e513a6c8f115394f6b1.jpg",
     "static/media/ggj.jpg": "./static/media/ggj.778b13fa04fb7f3881e1.jpg",
     "static/media/vrselim.jpg": "./static/media/vrselim.77712bff5272303249f8.jpg",
     "static/media/cvar.jpg": "./static/media/cvar.6bbf424489925db73f91.jpg",
+    "static/media/war.jpg": "./static/media/war.71356a4d6c58fce3fe42.jpg",
     "static/media/blackhole.jpg": "./static/media/blackhole.17e2b7d94a6f66375250.jpg",
+    "static/media/ggj 2025.jpg": "./static/media/ggj 2025.e53b6b52262170b70bb5.jpg",
     "static/media/Screenshot 2023-10-31 201936.jpg": "./static/media/Screenshot 2023-10-31 201936.9d0900329b2e30c8fe29.jpg",
+    "static/media/xplore.jpg": "./static/media/xplore.e4ecbb75bb93a872f78a.jpg",
     "static/media/ggj2k22.jpg": "./static/media/ggj2k22.7434af50bab39df85fa8.jpg",
+    "static/media/TRAINANIM.jpg": "./static/media/TRAINANIM.9157e6d8e6baa3513727.jpg",
     "index.html": "./index.html",
     "main.66be84a2.css.map": "./static/css/main.66be84a2.css.map",
-    "main.e114732f.js.map": "./static/js/main.e114732f.js.map"
+    "main.17c7fb7f.js.map": "./static/js/main.17c7fb7f.js.map"
   },
   "entrypoints": [
     "static/css/main.66be84a2.css",
-    "static/js/main.e114732f.js"
+    "static/js/main.17c7fb7f.js"
   ]
 }
