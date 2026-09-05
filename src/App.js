@@ -1,42 +1,54 @@
+import React from "react";
 import styled from "styled-components";
-import Header from "./components/Banner/Header";
-import ProfComponent from "./components/Banner/ProfComponent";
-import Honors from "./components/Honors/Honors";
-// import Clients from "./components/Clients/Clients";
-import Footer from "./components/Footer/Footer";
-import Projects from "./components/Projects/Projects";
-import Services from "./components/Service/Services";
+import Navbar from "./components/layout/Navbar";
+import CursorGlow from "./components/layout/CursorGlow";
+import Footer from "./components/layout/Footer";
+import Hero from "./components/sections/Hero";
+import Services from "./components/sections/Services";
+import Projects from "./components/sections/Projects";
+import Designs from "./components/sections/Designs";
+import Honors from "./components/sections/Honors";
+import Contact from "./components/sections/Contact";
+
 function App() {
   return (
-    <Container>
-      <Banner>
-        <Header />
-        <ProfComponent />
-      </Banner>
-      <Services />
-      <LightColor>
-        <Projects />
-      </LightColor>
-      <Honors />
-      <LightColor>
-        <Footer />
-      </LightColor>
-    </Container>
+    <Page>
+      <CursorGlow />
+      <Navbar />
+
+      <main>
+        <Hero />
+        <Services />
+        <Band>
+          <Projects />
+        </Band>
+        <Designs />
+        <Band>
+          <Honors />
+        </Band>
+        <Contact />
+      </main>
+
+      <Footer />
+    </Page>
   );
 }
 
 export default App;
 
-const Container = styled.div``;
-const Banner = styled.div`
-  background: linear-gradient(159deg, rgb(45, 45, 58) 0%, rgb(43, 43, 53) 100%);
-  height: 100vh;
-  @media (max-width: 640px) {
-    height: 100%;
-    padding-bottom: 2rem;
-  }
+const Page = styled.div`
+  position: relative;
+  isolation: isolate;
 `;
 
-const LightColor = styled.div`
-  background: linear-gradient(159deg, rgb(45, 45, 58) 0%, rgb(43, 43, 53) 100%);
+/* Alternating band so long pages keep a rhythm. */
+const Band = styled.div`
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.012),
+    rgba(255, 255, 255, 0.028)
+  );
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 `;
