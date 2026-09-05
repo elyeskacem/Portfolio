@@ -102,8 +102,9 @@ const Hero = () => {
           <Portrait>
             <div className="ring" />
             <div className="halo" />
-            <div className="mirror">
+            <div className="circle">
               <img src={profile.avatar} alt={profile.name} />
+              <span className="vignette" />
             </div>
             {heroBadges.map((badge) => (
               <span
@@ -164,7 +165,23 @@ const Content = styled.div`
 `;
 
 const Texts = styled.div`
+  position: relative;
   max-width: 620px;
+
+  /* soft scrim so the copy stays readable over the particle field */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -10% -14%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      62% 58% at 34% 50%,
+      rgba(5, 6, 10, 0.78),
+      rgba(5, 6, 10, 0.45) 55%,
+      transparent 78%
+    );
+  }
 `;
 
 const Name = styled.h1`
@@ -344,14 +361,43 @@ const Portrait = styled.div`
     animation: pulseGlow 5s ease-in-out infinite;
   }
 
-  .mirror {
+  .circle {
     position: relative;
-    transform: scaleX(-1);
+    width: 84%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 30px 60px -26px rgba(0, 0, 0, 0.9),
+      inset 0 0 60px rgba(1, 190, 150, 0.12);
     animation: float 6s ease-in-out infinite;
 
     img {
       width: 100%;
-      filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.55));
+      height: 100%;
+      object-fit: cover;
+      /* keeps the face just above centre of the circle */
+      object-position: 50% 56%;
+      transform: scale(1.02);
+      filter: saturate(0.92) contrast(1.04);
+      transition: transform 900ms var(--ease);
+    }
+
+    /* blends the photo edges into the dark page */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        transparent 52%,
+        rgba(5, 6, 10, 0.55) 88%,
+        rgba(5, 6, 10, 0.8) 100%
+      );
+    }
+
+    &:hover img {
+      transform: scale(1.06);
     }
   }
 

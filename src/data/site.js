@@ -10,7 +10,7 @@ import {
 } from "react-icons/ai";
 import { FiPhoneCall, FiMail, FiMapPin } from "react-icons/fi";
 import StackIcon from "../assets/images/stack.png";
-import Me from "../assets/images/me.png";
+import Me from "../assets/images/me.jpg";
 
 export const profile = {
   greeting: "Hello, I'm",

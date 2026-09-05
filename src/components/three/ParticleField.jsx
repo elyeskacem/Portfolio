@@ -48,7 +48,7 @@ const VERTEX = `
     gl_PointSize = uSize * aScale * uPixelRatio * (300.0 / max(-mv.z, 1.0));
 
     vColor = aColor;
-    vGlow = 0.32 + force * 0.85;
+    vGlow = 0.24 + force * 0.9;
   }
 `;
 
@@ -60,7 +60,7 @@ const FRAGMENT = `
     float d = length(gl_PointCoord - vec2(0.5));
     if (d > 0.5) discard;
     float alpha = pow(smoothstep(0.5, 0.0, d), 1.8);
-    gl_FragColor = vec4(vColor * (0.7 + vGlow), alpha * vGlow);
+    gl_FragColor = vec4(vColor * (0.65 + vGlow), alpha * vGlow);
   }
 `;
 
@@ -88,7 +88,7 @@ const ParticleField = ({ density = 1 }) => {
     }
 
     const isSmall = window.innerWidth < 768;
-    const count = Math.round((isSmall ? 900 : 2600) * density);
+    const count = Math.round((isSmall ? 800 : 2100) * density);
     const maxDpr = isSmall ? 1.5 : 2;
 
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxDpr));
@@ -133,7 +133,7 @@ const ParticleField = ({ density = 1 }) => {
       uMouse: { value: new THREE.Vector2(9999, 9999) },
       uStrength: { value: 0 },
       uRadius: { value: isSmall ? 16 : 22 },
-      uSize: { value: isSmall ? 9 : 11 },
+      uSize: { value: isSmall ? 8 : 10 },
       uPixelRatio: { value: renderer.getPixelRatio() },
     };
 
@@ -162,19 +162,19 @@ const ParticleField = ({ density = 1 }) => {
 
     const icosa = new THREE.Mesh(
       new THREE.IcosahedronGeometry(17, 1),
-      wireMaterial(0x01be96, 0.16)
+      wireMaterial(0x01be96, 0.11)
     );
     icosa.position.set(26, 4, -26);
 
     const knot = new THREE.Mesh(
       new THREE.TorusKnotGeometry(9, 2.1, 90, 12),
-      wireMaterial(0x7c5cff, 0.13)
+      wireMaterial(0x7c5cff, 0.09)
     );
     knot.position.set(-30, -12, -34);
 
     const ring = new THREE.Mesh(
       new THREE.TorusGeometry(12, 0.35, 8, 70),
-      wireMaterial(0x24d3ee, 0.18)
+      wireMaterial(0x24d3ee, 0.12)
     );
     ring.position.set(-18, 20, -20);
     ring.rotation.x = 1.1;
@@ -212,16 +212,21 @@ const ParticleField = ({ density = 1 }) => {
     window.addEventListener("resize", onResize);
 
     /* ---------------- pointer ---------------- */
-    const pointer = { x: 0, y: 0, tx: 0, ty: 0, active: 0, target: 0 };
+    const pointer = { x: 0, y: 0, tx: 0, ty: 0, active: 0, target: 0, inside: false };
     let burst = 0;
 
     const onPointerMove = (e) => {
       const rect = mount.getBoundingClientRect();
       pointer.tx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       pointer.ty = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+      pointer.inside = true;
       pointer.target = 1;
     };
+    // Only a real "cursor left the window" counts — switching tabs also fires
+    // this, and back then the field would stay dead until the next move.
     const onPointerLeave = () => {
+      if (document.hidden) return;
+      pointer.inside = false;
       pointer.target = 0;
     };
     const onPointerDown = () => {
@@ -239,9 +244,13 @@ const ParticleField = ({ density = 1 }) => {
     let frameId = 0;
     let onScreen = true;
     let hidden = document.hidden;
+    let contextLost = false;
+    // Own time accumulator: raw elapsed time jumps by however long the tab was
+    // in the background, which snaps every particle to a new position.
+    let elapsed = 0;
 
     const render = () => {
-      const elapsed = clock.getElapsedTime();
+      elapsed += Math.min(clock.getDelta(), 0.05);
       uniforms.uTime.value = elapsed;
 
       // smooth the pointer so nothing snaps
@@ -278,7 +287,7 @@ const ParticleField = ({ density = 1 }) => {
 
     const tick = () => {
       frameId = requestAnimationFrame(tick);
-      if (!onScreen || hidden) return;
+      if (!onScreen || hidden || contextLost) return;
       render();
     };
 
@@ -293,7 +302,7 @@ const ParticleField = ({ density = 1 }) => {
         ? new IntersectionObserver(
             ([entry]) => {
               onScreen = entry.isIntersecting;
-              if (onScreen) clock.getDelta(); // avoid a time jump
+              if (onScreen) clock.getDelta(); // drop the paused interval
             },
             { threshold: 0 }
           )
@@ -302,8 +311,28 @@ const ParticleField = ({ density = 1 }) => {
 
     const onVisibility = () => {
       hidden = document.hidden;
+      if (!hidden) {
+        clock.getDelta(); // drop the time spent in the background
+        // the cursor is still where it was, so keep reacting to it
+        if (pointer.inside) pointer.target = 1;
+      }
     };
     document.addEventListener("visibilitychange", onVisibility);
+
+    // Some GPUs drop the WebGL context when the tab goes to the background;
+    // without this the canvas freezes for good.
+    const canvas = renderer.domElement;
+    const onContextLost = (e) => {
+      e.preventDefault();
+      contextLost = true;
+    };
+    const onContextRestored = () => {
+      contextLost = false;
+      clock.getDelta();
+      resize();
+    };
+    canvas.addEventListener("webglcontextlost", onContextLost);
+    canvas.addEventListener("webglcontextrestored", onContextRestored);
 
     /* ---------------- cleanup ---------------- */
     return () => {
@@ -314,6 +343,8 @@ const ParticleField = ({ density = 1 }) => {
       window.removeEventListener("pointerdown", onPointerDown);
       document.removeEventListener("pointerleave", onPointerLeave);
       document.removeEventListener("visibilitychange", onVisibility);
+      canvas.removeEventListener("webglcontextlost", onContextLost);
+      canvas.removeEventListener("webglcontextrestored", onContextRestored);
       if (observer) observer.disconnect();
 
       geometry.dispose();

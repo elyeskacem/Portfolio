@@ -6,14 +6,14 @@
 :root {
   --bg: #05060a;
   --bg-soft: #0a0c13;
-  --surface: rgba(255, 255, 255, 0.035);
+  --surface: rgba(255, 255, 255, 0.045);
   --surface-strong: rgba(255, 255, 255, 0.06);
-  --border: rgba(255, 255, 255, 0.09);
+  --border: rgba(255, 255, 255, 0.1);
   --border-strong: rgba(255, 255, 255, 0.16);
 
-  --text: #e9eef7;
-  --muted: #97a1b4;
-  --faint: #6b7488;
+  --text: #f2f5fa;
+  --muted: #b3bdcd;
+  --faint: #8a93a5;
 
   --accent: #01be96;
   --accent-2: #24d3ee;
@@ -54,8 +54,8 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-weight: 300;
-  line-height: 1.65;
+  font-weight: 400;
+  line-height: 1.68;
   overflow-x: hidden;
   position: relative;
   -webkit-font-smoothing: antialiased;
@@ -70,9 +70,9 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(60rem 40rem at 12% -10%, rgba(1, 190, 150, 0.16), transparent 60%),
-    radial-gradient(52rem 38rem at 92% 8%, rgba(124, 92, 255, 0.14), transparent 62%),
-    radial-gradient(46rem 34rem at 50% 106%, rgba(36, 211, 238, 0.1), transparent 60%);
+    radial-gradient(60rem 40rem at 12% -10%, rgba(1, 190, 150, 0.09), transparent 62%),
+    radial-gradient(52rem 38rem at 92% 8%, rgba(124, 92, 255, 0.08), transparent 64%),
+    radial-gradient(46rem 34rem at 50% 106%, rgba(36, 211, 238, 0.06), transparent 62%);
 }
 
 body::after {
@@ -81,8 +81,8 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.013;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 h1,

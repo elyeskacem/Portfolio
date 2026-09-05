@@ -157,8 +157,8 @@ const Marker = styled.div`
 `;
 
 const Card = styled.div`
-  display: grid;
-  grid-template-columns: 150px 1fr;
+  display: flex;
+  flex-direction: column;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: var(--surface);
@@ -169,7 +169,8 @@ const Card = styled.div`
   figure {
     position: relative;
     margin: 0;
-    min-height: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
 
     img {
       position: absolute;
@@ -184,24 +185,24 @@ const Card = styled.div`
       position: absolute;
       inset: 0;
       background: linear-gradient(
-        90deg,
-        rgba(5, 6, 10, 0.15),
-        rgba(5, 6, 10, 0.75)
+        180deg,
+        rgba(5, 6, 10, 0.1) 45%,
+        rgba(5, 6, 10, 0.72) 100%
       );
     }
 
     span:last-child {
       position: absolute;
-      top: 0.6rem;
-      left: 0.6rem;
+      bottom: 0.8rem;
+      left: 0.9rem;
     }
   }
 
   .body {
-    padding: 1.15rem 1.3rem;
+    padding: 1.3rem 1.4rem 1.4rem;
 
     h3 {
-      font-size: 1.05rem;
+      font-size: 1.15rem;
     }
 
     small {
@@ -252,14 +253,8 @@ const Card = styled.div`
   }
 
   @media (max-width: 560px) {
-    grid-template-columns: 1fr;
-
     figure {
-      min-height: 150px;
-    }
-
-    figure img {
-      position: relative;
+      aspect-ratio: 4 / 3;
     }
   }
 `;
