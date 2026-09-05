@@ -30,8 +30,7 @@ const DesignCard = ({ item, index, onOpen }) => {
         ) : (
           <div className="placeholder">
             <TbVectorTriangle />
-            <span>Slot free — drop a render in</span>
-            <code>src/data/designs.js</code>
+            <span>In production</span>
           </div>
         )}
         <span className="shade" />
@@ -172,12 +171,13 @@ const Designs = () => {
       <Intro>
         <Reveal direction="left">
           <div className="copy">
-            <h3>Everything here is data-driven</h3>
+            <h3>From first blockout to final frame</h3>
             <p>
-              The gallery below is generated from a single table. Add an image
-              to <code>src/assets/images/3d/</code>, import it in{" "}
-              <code>src/data/designs.js</code> and it shows up with the right
-              layout, filter chip and lightbox — no component to touch.
+              I model, texture, light and render everything myself — whether the
+              result is a still image, an animated sequence, or an asset that
+              has to run at 90 frames per second inside a headset. Real-time
+              constraints shape how I build, so the same piece can end up in a
+              render and in a game.
             </p>
             <ul>
               <li>Modelling, UVs and texturing in Blender</li>

@@ -212,13 +212,20 @@ const ParticleField = ({ density = 1 }) => {
     window.addEventListener("resize", onResize);
 
     /* ---------------- pointer ---------------- */
+    let onScreen = true;
     const pointer = { x: 0, y: 0, tx: 0, ty: 0, active: 0, target: 0, inside: false };
     let burst = 0;
 
+    const clamp = (v) => Math.max(-1, Math.min(1, v));
+
     const onPointerMove = (e) => {
+      // Ignore moves made while the hero is scrolled away: the rect is off
+      // screen then, so the normalised values blow past [-1, 1] and the field
+      // comes back skewed.
+      if (!onScreen) return;
       const rect = mount.getBoundingClientRect();
-      pointer.tx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      pointer.ty = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+      pointer.tx = clamp(((e.clientX - rect.left) / rect.width) * 2 - 1);
+      pointer.ty = clamp(-(((e.clientY - rect.top) / rect.height) * 2 - 1));
       pointer.inside = true;
       pointer.target = 1;
     };
@@ -242,7 +249,6 @@ const ParticleField = ({ density = 1 }) => {
     /* ---------------- loop ---------------- */
     const clock = new THREE.Clock();
     let frameId = 0;
-    let onScreen = true;
     let hidden = document.hidden;
     let contextLost = false;
     // Own time accumulator: raw elapsed time jumps by however long the tab was
@@ -258,11 +264,14 @@ const ParticleField = ({ density = 1 }) => {
       pointer.y += (pointer.ty - pointer.y) * 0.08;
       pointer.active += (pointer.target - pointer.active) * 0.06;
 
+      // Screen -> world on the z=0 plane. The camera only translates (never
+      // rotates), so this stays exact; add its offset or the push lands beside
+      // the cursor.
       const visibleHeight =
         2 * Math.tan((camera.fov * Math.PI) / 360) * camera.position.z;
       uniforms.uMouse.value.set(
-        (pointer.x * visibleHeight * camera.aspect) / 2,
-        (pointer.y * visibleHeight) / 2
+        (pointer.x * visibleHeight * camera.aspect) / 2 + camera.position.x,
+        (pointer.y * visibleHeight) / 2 + camera.position.y
       );
 
       burst *= 0.94;
@@ -270,11 +279,13 @@ const ParticleField = ({ density = 1 }) => {
       uniforms.uRadius.value = (isSmall ? 16 : 22) * (1 + burst * 1.2);
 
       // parallax + slow rotations
+      // Parallax by translation only — lookAt() would rotate the camera and
+      // skew the mapping above. The cloud must not rotate either: the shader
+      // works in local space, so any spin would slowly twist the repulsion
+      // away from the cursor.
       camera.position.x += (pointer.x * 6 - camera.position.x) * 0.03;
       camera.position.y += (pointer.y * 4 - camera.position.y) * 0.03;
-      camera.lookAt(0, 0, 0);
 
-      points.rotation.z = elapsed * 0.012;
       icosa.rotation.x = elapsed * 0.14;
       icosa.rotation.y = elapsed * 0.1;
       knot.rotation.y = elapsed * 0.18;

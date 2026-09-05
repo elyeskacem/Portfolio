@@ -86,21 +86,21 @@ const designs = [
     link: "https://youtu.be/mDeKvPb0_Qg",
   },
   {
-    title: "Your Next Render",
+    title: "Character Study",
     category: "Character",
     software: ["Blender", "Substance"],
     year: "Soon",
     description:
-      "Placeholder card. Drop an image in src/assets/images/3d/, import it in src/data/designs.js and this becomes a real piece.",
+      "A stylised character currently in production — sculpting and texturing in progress. Renders coming soon.",
     image: null,
   },
   {
-    title: "Work In Progress",
+    title: "Concept Sequence",
     category: "Concept",
     software: ["Blender"],
     year: "Soon",
     description:
-      "Another free slot — duplicate any entry in src/data/designs.js to add a new one.",
+      "An animated concept piece in the works. Check back shortly to see the finished frames.",
     image: null,
   },
 ];
