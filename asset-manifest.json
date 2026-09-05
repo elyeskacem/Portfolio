@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "./static/css/main.66be84a2.css",
-    "main.js": "./static/js/main.17c7fb7f.js",
+    "main.css": "./static/css/main.914816cf.css",
+    "main.js": "./static/js/main.d1f40a8a.js",
     "static/media/major2024.jpg": "./static/media/major2024.ee2b8b9ff325e9f92c5b.jpg",
     "static/media/major2023.jpg": "./static/media/major2023.8ec8becdb5beb590c4af.jpg",
     "static/media/wt hack.jpg": "./static/media/wt hack.3779dbeffe4c13abf93f.jpg",
+    "static/media/me.jpg": "./static/media/me.0cd63df653854503aa0c.jpg",
     "static/media/skin simulation.jpg": "./static/media/skin simulation.cb70b68ebd74f1af98a1.jpg",
-    "static/media/me.png": "./static/media/me.a785a4b53079710a7edf.png",
     "static/media/CSJAM.jpg": "./static/media/CSJAM.367ffe1a5a0ee561fd16.jpg",
     "static/media/2dtruck.jpg": "./static/media/2dtruck.37ddf2bf0908e5bb73f0.jpg",
     "static/media/cloth simulation.jpg": "./static/media/cloth simulation.0742572be44d451571f4.jpg",
@@ -34,11 +34,11 @@
     "static/media/ggj2k22.jpg": "./static/media/ggj2k22.7434af50bab39df85fa8.jpg",
     "static/media/TRAINANIM.jpg": "./static/media/TRAINANIM.9157e6d8e6baa3513727.jpg",
     "index.html": "./index.html",
-    "main.66be84a2.css.map": "./static/css/main.66be84a2.css.map",
-    "main.17c7fb7f.js.map": "./static/js/main.17c7fb7f.js.map"
+    "main.914816cf.css.map": "./static/css/main.914816cf.css.map",
+    "main.d1f40a8a.js.map": "./static/js/main.d1f40a8a.js.map"
   },
   "entrypoints": [
-    "static/css/main.66be84a2.css",
-    "static/js/main.17c7fb7f.js"
+    "static/css/main.914816cf.css",
+    "static/js/main.d1f40a8a.js"
   ]
 }
