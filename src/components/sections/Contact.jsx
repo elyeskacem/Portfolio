@@ -9,6 +9,12 @@ import { HiOutlineChatAlt2 } from "react-icons/hi";
 import { contactChannels, emailConfig, socials, profile } from "../../data/site";
 import { Reveal, Section, SectionHeading, PrimaryButton, Magnetic } from "../ui";
 
+/** Fallback so a visitor's message is never lost if the service is down. */
+const mailtoFallback = ({ name, email, message }) =>
+  `mailto:${profile.email}?subject=${encodeURIComponent(
+    `Portfolio message from ${name}`
+  )}&body=${encodeURIComponent(`${message}\n\n— ${name} (${email})`)}`;
+
 const Contact = () => {
   const [sending, setSending] = useState(false);
 
@@ -17,10 +23,12 @@ const Contact = () => {
     const form = e.target;
     // form.elements (not form.name) — HTMLFormElement.name shadows named access
     const field = (key) => form.elements.namedItem(key).value.trim();
+    // These keys are the {{variables}} available in the EmailJS template.
     const data = {
       name: field("name"),
       email: field("email"),
       message: field("message"),
+      time: new Date().toLocaleString(),
     };
 
     if (!data.name || !data.email || !data.message) {
@@ -45,9 +53,26 @@ const Contact = () => {
           form.reset();
           setSending(false);
         },
-        () => {
+        (err) => {
+          // Keep the real reason visible — EmailJS failures are usually
+          // account-side (an expired Gmail connection, a quota), not a bad form.
+          console.error("EmailJS:", err && (err.status || ""), err && (err.text || err.message));
           toast.dismiss(loading);
-          toast.error("Something went wrong. Try again or email me directly.");
+          toast.error(
+            (t) => (
+              <span>
+                Sending failed. Reach me directly at{" "}
+                <a
+                  href={mailtoFallback(data)}
+                  style={{ color: "#01be96" }}
+                  onClick={() => toast.dismiss(t.id)}
+                >
+                  {profile.email}
+                </a>
+              </span>
+            ),
+            { duration: 10000 }
+          );
           setSending(false);
         }
       );
