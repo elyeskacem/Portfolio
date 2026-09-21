@@ -8,7 +8,6 @@ import {
   AiFillYoutube,
   AiOutlineInstagram,
 } from "react-icons/ai";
-import { FiPhoneCall, FiMail, FiMapPin } from "react-icons/fi";
 import StackIcon from "../assets/images/stack.png";
 import Me from "../assets/images/me.jpg";
 
@@ -28,10 +27,6 @@ export const profile = {
   avatar: Me,
   cv: "CV.pdf", // file lives in /public
   cvFileName: "Elyes Kacem CV.pdf",
-  email: "elyeskacem3d@gmail.com",
-  phone: "+216 95 578 050",
-  phoneHref: "tel:+21695578050",
-  locations: ["Manouba, Tunisia", "Bizerte, Tunisia"],
 };
 
 // Floating chips around the hero portrait.
@@ -82,26 +77,6 @@ export const socials = [
   },
 ];
 
-export const contactChannels = [
-  {
-    label: "Email",
-    value: profile.email,
-    href: `mailto:${profile.email}`,
-    Icon: FiMail,
-  },
-  {
-    label: "Phone",
-    value: profile.phone,
-    href: profile.phoneHref,
-    Icon: FiPhoneCall,
-  },
-  {
-    label: "Based in",
-    value: profile.locations.join(" · "),
-    href: null,
-    Icon: FiMapPin,
-  },
-];
 
 // EmailJS credentials used by the contact form.
 export const emailConfig = {
