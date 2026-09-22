@@ -49,7 +49,7 @@ const designs = [
     year: "2025",
     description:
       "My family's Golf 6, rebuilt in Blender. The project was a chance to push modelling, texturing and studio lighting together — down to the tail lights and the plate.",
-    images: [GOLF_REAR_CLOSE, GOLF_FRONT, GOLF_REAR34, GOLF_REAR, GOLF_DETAIL],
+    images: [GOLF_DETAIL, GOLF_REAR_CLOSE, GOLF_FRONT, GOLF_REAR34, GOLF_REAR],
     link: "https://www.linkedin.com/posts/elyeskacem_blender-3d-modeling-activity-7348995658986487808-o1-E",
     featured: true,
   },
