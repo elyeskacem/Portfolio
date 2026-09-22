@@ -1,22 +1,39 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import { FiPlay, FiPlus } from "react-icons/fi";
 import projects, { projectFilters } from "../../data/projects";
-import { Reveal, Section, SectionHeading, Chip, Tag } from "../ui";
+import { Reveal, Section, SectionHeading, Chip, Tag, ShowMore } from "../ui";
+import { Lightbox, Media, imagesOf, useScrub } from "../ui/Gallery";
 import { useTilt, usePointerFine } from "../../hooks";
 
 const STEP = 6;
 
-const ProjectCard = ({ item, index }) => {
+const ProjectCard = ({ item, index, onOpen }) => {
   const fine = usePointerFine();
   const tilt = useTilt({ max: 6, scale: 1.01, disabled: !fine });
+  const images = imagesOf(item);
+  const { view, scrub } = useScrub(images.length);
+
+  const open = () => onOpen(index, view);
 
   return (
-    <Card {...tilt} style={{ animationDelay: `${(index % STEP) * 70}ms` }}>
-      <figure>
-        <img src={item.img} alt={item.title} loading="lazy" />
-        <span className="shade" />
-      </figure>
+    <Card
+      {...tilt}
+      style={{ animationDelay: `${(index % STEP) * 70}ms` }}
+      onClick={open}
+      data-cursor="hover"
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && open()}
+    >
+      <Media
+        images={images}
+        title={item.title}
+        view={view}
+        scrub={scrub}
+        ratio="16 / 10"
+        emptyLabel="Coming soon"
+      />
 
       <div className="body">
         <div className="top">
@@ -26,7 +43,12 @@ const ProjectCard = ({ item, index }) => {
         <h3>{item.title}</h3>
         <p>{item.disc}</p>
         {item.demo && (
-          <a href={item.demo} target="_blank" rel="noreferrer">
+          <a
+            href={item.demo}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(e) => e.stopPropagation()}
+          >
             <FiPlay /> Watch demo
           </a>
         )}
@@ -37,7 +59,9 @@ const ProjectCard = ({ item, index }) => {
 
 const Projects = () => {
   const [filter, setFilter] = useState("All");
-  const [limit, setLimit] = useState(STEP);
+  const [showAll, setShowAll] = useState(false);
+  const [open, setOpen] = useState(null);
+  const [startView, setStartView] = useState(0);
 
   const filtered = useMemo(
     () =>
@@ -47,8 +71,23 @@ const Projects = () => {
     [filter]
   );
 
-  const visible = filtered.slice(0, limit);
+  const visible = showAll ? filtered : filtered.slice(0, STEP);
   const filters = ["All", ...projectFilters];
+
+  const openAt = useCallback((index, view = 0) => {
+    setStartView(view);
+    setOpen(index);
+  }, []);
+
+  const step = useCallback(
+    (dir) => {
+      setStartView(0);
+      setOpen((current) =>
+        current === null ? null : (current + dir + visible.length) % visible.length
+      );
+    },
+    [visible.length]
+  );
 
   return (
     <Section id="projects">
@@ -68,14 +107,12 @@ const Projects = () => {
               $active={filter === name}
               onClick={() => {
                 setFilter(name);
-                setLimit(STEP);
+                setShowAll(false);
               }}
             >
               {name}
               {name !== "All" && (
-                <b>
-                  {projects.filter((p) => p.tags.includes(name)).length}
-                </b>
+                <b>{projects.filter((p) => p.tags.includes(name)).length}</b>
               )}
             </Chip>
           ))}
@@ -84,16 +121,49 @@ const Projects = () => {
 
       <Grid>
         {visible.map((item, i) => (
-          <ProjectCard key={`${filter}-${item.title}`} item={item} index={i} />
+          <ProjectCard
+            key={`${filter}-${item.title}`}
+            item={item}
+            index={i}
+            onOpen={openAt}
+          />
         ))}
       </Grid>
 
-      {limit < filtered.length && (
-        <More>
-          <button type="button" onClick={() => setLimit((v) => v + STEP)}>
-            <FiPlus /> Show more ({filtered.length - limit} left)
+      {!showAll && filtered.length > visible.length && (
+        <ShowMore>
+          <button type="button" onClick={() => setShowAll(true)}>
+            <FiPlus /> Show all {filtered.length} projects
           </button>
-        </More>
+        </ShowMore>
+      )}
+
+      {open !== null && (
+        <Lightbox
+          items={visible}
+          index={open}
+          initialView={startView}
+          onClose={() => setOpen(null)}
+          onStep={step}
+          renderMeta={(item) => (
+            <>
+              <Tag>{item.tags[0]}</Tag>
+              <h3>{item.title}</h3>
+              <p>{item.disc}</p>
+              <div className="tags">
+                {item.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+                {item.year && <span>{item.year}</span>}
+              </div>
+              {item.demo && (
+                <a href={item.demo} target="_blank" rel="noreferrer">
+                  <FiPlay /> Watch demo
+                </a>
+              )}
+            </>
+          )}
+        />
       )}
     </Section>
   );
@@ -142,34 +212,14 @@ const Card = styled.article`
   border: 1px solid var(--border);
   background: var(--surface);
   overflow: hidden;
+  cursor: pointer;
   opacity: 0;
   animation: popIn 620ms var(--ease) forwards;
   transition: border-color 400ms var(--ease), box-shadow 500ms var(--ease),
     transform 500ms var(--ease);
 
-  figure {
-    position: relative;
-    margin: 0;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 900ms var(--ease), filter 600ms var(--ease);
-      filter: saturate(0.85) contrast(1.02);
-    }
-
-    .shade {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(5, 6, 10, 0) 35%,
-        rgba(5, 6, 10, 0.85) 100%
-      );
-    }
+  figure img {
+    filter: saturate(0.85) contrast(1.02);
   }
 
   .body {
@@ -223,33 +273,13 @@ const Card = styled.article`
     box-shadow: var(--shadow);
   }
 
-  &:hover img {
+  &:hover figure img {
     transform: scale(1.07);
     filter: saturate(1.1) contrast(1.05);
   }
-`;
 
-const More = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 2.6rem;
-
-  button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.8rem;
-    border-radius: 50px;
-    color: var(--muted);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: all 400ms var(--ease);
-
-    &:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      transform: translateY(-3px);
-    }
+  &:hover .zoom {
+    opacity: 1;
+    transform: none;
   }
 `;

@@ -4,15 +4,36 @@ import { FaTrophy } from "react-icons/fa";
 import honors from "../../data/honors";
 import { Reveal, Section, SectionHeading, Tag } from "../ui";
 
+/* These photos range from 16:9 to portrait. The frame follows each image's own
+   shape so nothing is cropped, but stays inside these bounds so one tall
+   portrait cannot tower over the rest of the timeline. */
+const MIN_RATIO = 0.85;
+const MAX_RATIO = 1.78;
+const clampRatio = (r) => Math.min(MAX_RATIO, Math.max(MIN_RATIO, r));
+
 const HonorItem = ({ item, side }) => {
   const [expanded, setExpanded] = useState(false);
+  const [ratio, setRatio] = useState(null);
+
+  const onLoad = (e) => {
+    const { naturalWidth: w, naturalHeight: h } = e.target;
+    if (w && h) setRatio(clampRatio(w / h));
+  };
 
   return (
     <Row $side={side}>
       <Reveal direction={side === "left" ? "right" : "left"}>
         <Card>
-          <figure>
-            <img src={item.img} alt={item.title} loading="lazy" />
+          <figure style={{ aspectRatio: ratio || 1.6 }}>
+            {/* blurred copy fills the leftover space on odd shapes */}
+            <img className="backdrop" src={item.img} alt="" aria-hidden="true" />
+            <img
+              className="shot"
+              src={item.img}
+              alt={item.title}
+              loading="lazy"
+              onLoad={onLoad}
+            />
             <span className="shade" />
             <Tag>{item.place}</Tag>
           </figure>
@@ -169,21 +190,34 @@ const Card = styled.div`
   figure {
     position: relative;
     margin: 0;
-    /* No fixed ratio: these photos run from 16:9 to portrait, and a shared
-       box would crop most of the tall ones away. The image sets the height. */
-    min-height: 200px;
     overflow: hidden;
+    background: #0a0c12;
 
     img {
-      display: block;
+      position: absolute;
+      inset: 0;
       width: 100%;
-      height: auto;
+      height: 100%;
+    }
+
+    /* the whole photo, never cropped */
+    .shot {
+      object-fit: contain;
+      z-index: 1;
       transition: transform 900ms var(--ease);
+    }
+
+    .backdrop {
+      object-fit: cover;
+      filter: blur(26px) saturate(1.3);
+      transform: scale(1.2);
+      opacity: 0.45;
     }
 
     .shade {
       position: absolute;
       inset: 0;
+      z-index: 2;
       background: linear-gradient(
         180deg,
         rgba(5, 6, 10, 0.1) 45%,
@@ -195,6 +229,7 @@ const Card = styled.div`
       position: absolute;
       bottom: 0.8rem;
       left: 0.9rem;
+      z-index: 3;
     }
   }
 
@@ -248,8 +283,8 @@ const Card = styled.div`
     box-shadow: var(--shadow);
   }
 
-  &:hover img {
-    transform: scale(1.08);
+  &:hover .shot {
+    transform: scale(1.05);
   }
 
 `;

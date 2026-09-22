@@ -248,6 +248,33 @@ export const Tag = styled.span`
   border: 1px solid rgba(1, 190, 150, 0.24);
 `;
 
+/* ---------------- Show-all button ---------------- */
+
+export const ShowMore = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 2.6rem;
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 400ms var(--ease);
+
+    &:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+  }
+`;
+
 /* ---------------- Glass card ---------------- */
 
 export const GlassCard = styled.div`
