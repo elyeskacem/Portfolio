@@ -169,15 +169,15 @@ const Card = styled.div`
   figure {
     position: relative;
     margin: 0;
-    aspect-ratio: 16 / 10;
+    /* No fixed ratio: these photos run from 16:9 to portrait, and a shared
+       box would crop most of the tall ones away. The image sets the height. */
+    min-height: 200px;
     overflow: hidden;
 
     img {
-      position: absolute;
-      inset: 0;
+      display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       transition: transform 900ms var(--ease);
     }
 
@@ -252,9 +252,4 @@ const Card = styled.div`
     transform: scale(1.08);
   }
 
-  @media (max-width: 560px) {
-    figure {
-      aspect-ratio: 4 / 3;
-    }
-  }
 `;
