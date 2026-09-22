@@ -32,6 +32,9 @@
   --shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.9);
   --nav-h: 72px;
 
+  /* how far scroll-reveals slide in sideways */
+  --reveal-x: 40px;
+
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -43,6 +46,10 @@
 }
 
 html {
+  /* clip, not hidden: it stops sideways drag on phones without turning the
+     root into a scroll container (which would break sticky/fixed and smooth
+     scrolling). Older browsers just ignore it. */
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-h) + 16px);
   -webkit-text-size-adjust: 100%;
@@ -214,6 +221,12 @@ img {
 }
 
 /* Respect users who ask for less motion */
+@media (max-width: 900px) {
+  :root {
+    --reveal-x: 14px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

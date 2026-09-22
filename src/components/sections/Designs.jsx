@@ -1,32 +1,67 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
-import { FiMaximize2, FiX, FiArrowLeft, FiArrowRight, FiExternalLink } from "react-icons/fi";
+import {
+  FiMaximize2,
+  FiX,
+  FiArrowLeft,
+  FiArrowRight,
+  FiExternalLink,
+  FiChevronLeft,
+  FiChevronRight,
+  FiLayers,
+} from "react-icons/fi";
 import { TbVectorTriangle } from "react-icons/tb";
 import designs from "../../data/designs";
 import Sculpture from "../three/Sculpture";
 import { Reveal, Section, SectionHeading, Chip, Tag } from "../ui";
 import { useScrollLock, useTilt, usePointerFine } from "../../hooks";
 
+/** Every view of a piece. Accepts `images: [...]` or the older `image`. */
+const imagesOf = (item) => {
+  if (Array.isArray(item.images)) return item.images.filter(Boolean);
+  return item.image ? [item.image] : [];
+};
+
 /* ---------------- one gallery card ---------------- */
 
 const DesignCard = ({ item, index, onOpen }) => {
   const fine = usePointerFine();
   const tilt = useTilt({ max: 6, scale: 1.01, disabled: !fine });
+  const images = imagesOf(item);
+  const [view, setView] = useState(0);
+
+  // Moving across the picture scrubs through the angles, like a turntable.
+  const scrub = (e) => {
+    if (!fine || images.length < 2) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const ratio = (e.clientX - rect.left) / rect.width;
+    setView(Math.min(images.length - 1, Math.max(0, Math.floor(ratio * images.length))));
+  };
+
+  const open = () => onOpen(index, view);
 
   return (
     <Card
       {...tilt}
       $featured={item.featured}
       style={{ animationDelay: `${index * 70}ms` }}
-      onClick={() => onOpen(index)}
+      onClick={open}
       data-cursor="hover"
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onOpen(index)}
+      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && open()}
     >
-      <figure>
-        {item.image ? (
-          <img src={item.image} alt={item.title} loading="lazy" />
+      <figure onMouseMove={scrub} onMouseLeave={() => setView(0)}>
+        {images.length ? (
+          images.map((src, i) => (
+            <img
+              key={`${src}-${i}`}
+              src={src}
+              alt={images.length > 1 ? `${item.title} — view ${i + 1}` : item.title}
+              loading="lazy"
+              className={i === view ? "on" : ""}
+            />
+          ))
         ) : (
           <div className="placeholder">
             <TbVectorTriangle />
@@ -34,6 +69,18 @@ const DesignCard = ({ item, index, onOpen }) => {
           </div>
         )}
         <span className="shade" />
+        {images.length > 1 && (
+          <>
+            <span className="count">
+              <FiLayers /> {images.length} views
+            </span>
+            <span className="views" aria-hidden="true">
+              {images.map((_, i) => (
+                <i key={i} className={i === view ? "on" : ""} />
+              ))}
+            </span>
+          </>
+        )}
         <span className="zoom">
           <FiMaximize2 />
         </span>
@@ -57,19 +104,54 @@ const DesignCard = ({ item, index, onOpen }) => {
 
 /* ---------------- lightbox ---------------- */
 
-const Lightbox = ({ items, index, onClose, onStep }) => {
+const Lightbox = ({ items, index, initialView, onClose, onStep }) => {
   const item = items[index];
+  const images = item ? imagesOf(item) : [];
+  const count = images.length;
+  const [view, setView] = useState(initialView);
+  const touchX = useRef(null);
   useScrollLock(Boolean(item));
+
+  // a new piece starts on the angle it was opened on (0 when stepping)
+  useEffect(() => {
+    setView(initialView);
+  }, [index, initialView]);
+
+  // arrows over the image cycle angles within this piece
+  const cycle = useCallback(
+    (dir) => setView((v) => (v + dir + count) % count),
+    [count]
+  );
+
+  // keyboard walks every angle, then moves on to the next piece
+  const walk = useCallback(
+    (dir) => {
+      const next = view + dir;
+      if (count > 1 && next >= 0 && next < count) setView(next);
+      else onStep(dir);
+    },
+    [view, count, onStep]
+  );
 
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight") onStep(1);
-      if (e.key === "ArrowLeft") onStep(-1);
+      if (e.key === "ArrowRight") walk(1);
+      if (e.key === "ArrowLeft") walk(-1);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [onClose, onStep]);
+  }, [onClose, walk]);
+
+  const onTouchStart = (e) => {
+    touchX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e) => {
+    if (touchX.current === null || count < 2) return;
+    const dx = e.changedTouches[0].clientX - touchX.current;
+    touchX.current = null;
+    if (Math.abs(dx) > 40) cycle(dx < 0 ? 1 : -1);
+  };
 
   if (!item) return null;
 
@@ -103,11 +185,60 @@ const Lightbox = ({ items, index, onClose, onStep }) => {
 
       <Panel onClick={(e) => e.stopPropagation()}>
         <div className="visual">
-          {item.image ? (
-            <img src={item.image} alt={item.title} />
-          ) : (
-            <div className="placeholder">
-              <TbVectorTriangle />
+          <div className="stage" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+            {count ? (
+              images.map((src, i) => (
+                <img
+                  key={`${src}-${i}`}
+                  src={src}
+                  alt={count > 1 ? `${item.title} — view ${i + 1}` : item.title}
+                  className={i === view ? "on" : ""}
+                />
+              ))
+            ) : (
+              <div className="placeholder">
+                <TbVectorTriangle />
+              </div>
+            )}
+
+            {count > 1 && (
+              <>
+                <button
+                  className="angle left"
+                  type="button"
+                  aria-label="Previous view"
+                  onClick={() => cycle(-1)}
+                >
+                  <FiChevronLeft />
+                </button>
+                <button
+                  className="angle right"
+                  type="button"
+                  aria-label="Next view"
+                  onClick={() => cycle(1)}
+                >
+                  <FiChevronRight />
+                </button>
+                <span className="angle-count">
+                  {view + 1} / {count}
+                </span>
+              </>
+            )}
+          </div>
+
+          {count > 1 && (
+            <div className="thumbs">
+              {images.map((src, i) => (
+                <button
+                  key={`${src}-${i}`}
+                  type="button"
+                  className={i === view ? "on" : ""}
+                  aria-label={`Show view ${i + 1}`}
+                  onClick={() => setView(i)}
+                >
+                  <img src={src} alt="" />
+                </button>
+              ))}
             </div>
           )}
         </div>
@@ -143,19 +274,28 @@ const Designs = () => {
   );
   const [filter, setFilter] = useState("All");
   const [open, setOpen] = useState(null);
+  const [startView, setStartView] = useState(0);
 
   const items = useMemo(
     () => (filter === "All" ? designs : designs.filter((d) => d.category === filter)),
     [filter]
   );
 
+  // open on whichever angle the card was showing
+  const openAt = useCallback((index, view = 0) => {
+    setStartView(view);
+    setOpen(index);
+  }, []);
+
   const step = useCallback(
-    (dir) =>
+    (dir) => {
+      setStartView(0);
       setOpen((current) =>
         current === null
           ? null
           : (current + dir + items.length) % items.length
-      ),
+      );
+    },
     [items.length]
   );
 
@@ -212,7 +352,7 @@ const Designs = () => {
             key={`${filter}-${item.title}`}
             item={item}
             index={i}
-            onOpen={setOpen}
+            onOpen={openAt}
           />
         ))}
       </Grid>
@@ -221,6 +361,7 @@ const Designs = () => {
         <Lightbox
           items={items}
           index={open}
+          initialView={startView}
           onClose={() => setOpen(null)}
           onStep={step}
         />
@@ -308,9 +449,11 @@ const Filters = styled.div`
   }
 `;
 
+/* Two big columns: renders deserve the room, and an even count never leaves
+   a gap the way mixed-width cards do. */
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 430px), 1fr));
   gap: 1.3rem;
 
   @media (max-width: 520px) {
@@ -319,7 +462,6 @@ const Grid = styled.div`
 `;
 
 const Card = styled.article`
-  grid-column: ${(p) => (p.$featured ? "span 2" : "span 1")};
   position: relative;
   border-radius: var(--radius);
   border: 1px solid var(--border);
@@ -338,11 +480,62 @@ const Card = styled.article`
     overflow: hidden;
     background: linear-gradient(140deg, #0b1a1a, #131126);
 
+    /* every angle is stacked; the active one fades in */
     img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 900ms var(--ease), filter 700ms var(--ease);
+      opacity: 0;
+      transition: opacity 380ms var(--ease-soft), transform 900ms var(--ease),
+        filter 700ms var(--ease);
+
+      &.on {
+        opacity: 1;
+      }
+    }
+
+    .count {
+      position: absolute;
+      top: 0.9rem;
+      left: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      background: rgba(5, 6, 10, 0.62);
+      border: 1px solid var(--border-strong);
+      backdrop-filter: blur(8px);
+
+      svg {
+        color: var(--accent);
+      }
+    }
+
+    .views {
+      position: absolute;
+      left: 0.9rem;
+      right: 0.9rem;
+      bottom: 0.75rem;
+      display: flex;
+      gap: 4px;
+
+      i {
+        flex: 1;
+        height: 3px;
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.25);
+        transition: background 300ms var(--ease);
+
+        &.on {
+          background: var(--accent);
+        }
+      }
     }
 
     .placeholder {
@@ -452,7 +645,7 @@ const Card = styled.article`
     box-shadow: var(--shadow);
   }
 
-  &:hover img {
+  &:hover figure img {
     transform: scale(1.06);
     filter: saturate(1.12);
   }
@@ -516,12 +709,31 @@ const Overlay = styled.div`
     transform: translateY(-50%);
   }
 
-  @media (max-width: 700px) {
-    .prev {
-      left: 0.5rem;
-    }
+  /* On phones the side arrows would sit on top of the image and thumbnails,
+     so every control moves into a bar above the panel. Same breakpoint as
+     the panel's single-column layout. */
+  @media (max-width: 780px) {
+    place-items: start center;
+    padding: 4.4rem 0.8rem 0.8rem;
+
+    .close,
+    .prev,
     .next {
-      right: 0.5rem;
+      top: 0.9rem;
+      transform: none;
+    }
+
+    .close {
+      right: 0.8rem;
+    }
+
+    .prev {
+      left: 0.8rem;
+    }
+
+    .next {
+      left: calc(0.8rem + 52px);
+      right: auto;
     }
   }
 `;
@@ -539,23 +751,84 @@ const Panel = styled.div`
 
   .visual {
     background: #05060a;
-    display: grid;
-    place-items: center;
-    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
 
-    img {
+  .stage {
+    position: relative;
+    /* flex-basis auto, so the size below is honoured (flex: 1 zeroes it) */
+    flex: 1 0 auto;
+    /* close to the 16:9 renders, so they are not framed by thick black bands */
+    aspect-ratio: 16 / 10;
+    min-height: 280px;
+    max-height: min(68vh, 560px);
+    touch-action: pan-y;
+
+    > img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      max-height: 86vh;
       object-fit: contain;
+      opacity: 0;
+      transition: opacity 380ms var(--ease-soft);
+
+      &.on {
+        opacity: 1;
+      }
+    }
+
+    .angle {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 1.15rem;
+      color: var(--text);
+      background: rgba(5, 6, 10, 0.6);
+      border: 1px solid var(--border-strong);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      transition: all 300ms var(--ease);
+
+      &:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      &.left {
+        left: 0.8rem;
+      }
+
+      &.right {
+        right: 0.8rem;
+      }
+    }
+
+    .angle-count {
+      position: absolute;
+      top: 0.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.2rem 0.65rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      color: var(--text);
+      background: rgba(5, 6, 10, 0.6);
+      border: 1px solid var(--border);
     }
 
     .placeholder {
       display: grid;
       place-items: center;
-      width: 100%;
-      height: 100%;
-      min-height: 260px;
+      position: absolute;
+      inset: 0;
       color: var(--accent);
       font-size: 3rem;
       background: radial-gradient(
@@ -563,6 +836,44 @@ const Panel = styled.div`
         rgba(1, 190, 150, 0.16),
         transparent 70%
       );
+    }
+  }
+
+  .thumbs {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.7rem;
+    overflow-x: auto;
+    border-top: 1px solid var(--border);
+    scrollbar-width: thin;
+
+    button {
+      flex: 0 0 auto;
+      width: 72px;
+      aspect-ratio: 4 / 3;
+      padding: 0;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      background: #0d1018;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.55;
+      transition: opacity 300ms var(--ease), border-color 300ms var(--ease);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      &.on {
+        opacity: 1;
+        border-color: var(--accent);
+      }
     }
   }
 
@@ -619,11 +930,14 @@ const Panel = styled.div`
 
   @media (max-width: 780px) {
     grid-template-columns: 1fr;
-    max-height: 88vh;
+    max-height: calc(100vh - 5.2rem);
+    max-height: calc(100dvh - 5.2rem);
     overflow-y: auto;
 
-    .visual img {
-      max-height: 42vh;
+    .stage {
+      flex: none;
+      min-height: 0;
+      height: 42vh;
     }
   }
 `;

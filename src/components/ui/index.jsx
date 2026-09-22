@@ -4,11 +4,14 @@ import { useReveal, usePointerFine } from "../../hooks";
 
 /* ---------------- Reveal on scroll ---------------- */
 
+/* Horizontal offsets use --reveal-x (see index.css): a wide slide sticks out
+   past the page edge on phones, where the side margin is only ~19px, and that
+   widens the whole document until the element animates in. */
 const OFFSETS = {
   up: "0, 34px, 0",
   down: "0, -34px, 0",
-  left: "-40px, 0, 0",
-  right: "40px, 0, 0",
+  left: "calc(var(--reveal-x) * -1), 0, 0",
+  right: "var(--reveal-x), 0, 0",
   none: "0, 0, 0",
 };
 
