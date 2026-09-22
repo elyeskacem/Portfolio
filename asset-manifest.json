@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.914816cf.css",
-    "main.js": "./static/js/main.89a9f6bf.js",
+    "main.css": "./static/css/main.e19f4e04.css",
+    "main.js": "./static/js/main.0c1c585f.js",
     "static/media/major2024.jpg": "./static/media/major2024.ee2b8b9ff325e9f92c5b.jpg",
     "static/media/major2023.jpg": "./static/media/major2023.8ec8becdb5beb590c4af.jpg",
     "static/media/wt hack.jpg": "./static/media/wt hack.3779dbeffe4c13abf93f.jpg",
@@ -31,14 +31,23 @@
     "static/media/ggj 2025.jpg": "./static/media/ggj 2025.e53b6b52262170b70bb5.jpg",
     "static/media/Screenshot 2023-10-31 201936.jpg": "./static/media/Screenshot 2023-10-31 201936.9d0900329b2e30c8fe29.jpg",
     "static/media/xplore.jpg": "./static/media/xplore.e4ecbb75bb93a872f78a.jpg",
+    "static/media/golf6-1.jpg": "./static/media/golf6-1.c19e954b8e40c21485d9.jpg",
     "static/media/ggj2k22.jpg": "./static/media/ggj2k22.7434af50bab39df85fa8.jpg",
+    "static/media/golf6-3.jpg": "./static/media/golf6-3.60bd40f770031af73fe1.jpg",
     "static/media/TRAINANIM.jpg": "./static/media/TRAINANIM.9157e6d8e6baa3513727.jpg",
+    "static/media/golf6-5.jpg": "./static/media/golf6-5.3936b93bf21eed43778d.jpg",
+    "static/media/opel-vectra-4.jpg": "./static/media/opel-vectra-4.6c40f537b3477c33d60d.jpg",
+    "static/media/golf6-4.jpg": "./static/media/golf6-4.0dca4e1574cc1e5aa2ad.jpg",
+    "static/media/opel-vectra-1.jpg": "./static/media/opel-vectra-1.8a806d58266edffbc4e9.jpg",
+    "static/media/golf6-2.jpg": "./static/media/golf6-2.29cdd6639540b020d07f.jpg",
+    "static/media/opel-vectra-2.jpg": "./static/media/opel-vectra-2.5aa9607cde2f46e7beb9.jpg",
+    "static/media/opel-vectra-3.jpg": "./static/media/opel-vectra-3.cdb501940d663262cff8.jpg",
     "index.html": "./index.html",
-    "main.914816cf.css.map": "./static/css/main.914816cf.css.map",
-    "main.89a9f6bf.js.map": "./static/js/main.89a9f6bf.js.map"
+    "main.e19f4e04.css.map": "./static/css/main.e19f4e04.css.map",
+    "main.0c1c585f.js.map": "./static/js/main.0c1c585f.js.map"
   },
   "entrypoints": [
-    "static/css/main.914816cf.css",
-    "static/js/main.89a9f6bf.js"
+    "static/css/main.e19f4e04.css",
+    "static/js/main.0c1c585f.js"
   ]
 }
