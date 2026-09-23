@@ -276,6 +276,8 @@ export default Sculpture;
 
 const Frame = styled.div`
   position: relative;
+  user-select: none;
+  -webkit-user-select: none;
   width: 100%;
   border-radius: var(--radius);
   border: 1px solid var(--border);

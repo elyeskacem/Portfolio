@@ -185,6 +185,8 @@ const Texts = styled.div`
 `;
 
 const Name = styled.h1`
+  user-select: none;
+  -webkit-user-select: none;
   font-size: clamp(2.6rem, 7.5vw, 4.6rem);
   line-height: 1.02;
   margin: 0.9rem 0 0.6rem;
@@ -326,6 +328,8 @@ const Stats = styled.div`
 
 const Portrait = styled.div`
   position: relative;
+  user-select: none;
+  -webkit-user-select: none;
   width: min(24rem, 78vw);
   aspect-ratio: 1;
   display: grid;

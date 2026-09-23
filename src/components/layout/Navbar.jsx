@@ -103,6 +103,7 @@ const Progress = styled.div`
 `;
 
 const Inner = styled.nav`
+  user-select: none;
   width: min(1180px, 88%);
   margin: 0 auto;
   height: var(--nav-h);

@@ -124,6 +124,7 @@ export const SectionHeading = ({ eyebrow, title, accent, text, center }) => (
 
 const buttonBase = css`
   position: relative;
+  user-select: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -219,6 +220,7 @@ const MagneticBox = styled.div`
 /* ---------------- Chips ---------------- */
 
 export const Chip = styled.button`
+  user-select: none;
   padding: 0.45rem 1.05rem;
   border-radius: 50px;
   font-size: 0.82rem;

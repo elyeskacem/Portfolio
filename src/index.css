@@ -119,6 +119,10 @@ textarea {
 img {
   max-width: 100%;
   display: block;
+  /* stops the blue selection highlight and the drag ghost */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 
 ::selection {

@@ -45,10 +45,15 @@ const VERTEX = `
 
     vec4 mv = modelViewMatrix * vec4(pos, 1.0);
     gl_Position = projectionMatrix * mv;
-    gl_PointSize = uSize * aScale * uPixelRatio * (300.0 / max(-mv.z, 1.0));
+
+    // Perspective attenuation, clamped: without a ceiling the nearest
+    // particles blow up into big soft blobs instead of reading as stars.
+    float size = uSize * aScale * uPixelRatio * (100.0 / max(-mv.z, 1.0));
+    gl_PointSize = clamp(size, 1.0, 7.0 * uPixelRatio);
 
     vColor = aColor;
-    vGlow = 0.24 + force * 0.9;
+    float twinkle = 0.72 + 0.28 * sin(uTime * 1.4 + aPhase * 3.0);
+    vGlow = 0.5 * twinkle + force * 0.9;
   }
 `;
 
@@ -59,7 +64,7 @@ const FRAGMENT = `
   void main() {
     float d = length(gl_PointCoord - vec2(0.5));
     if (d > 0.5) discard;
-    float alpha = pow(smoothstep(0.5, 0.0, d), 1.8);
+    float alpha = pow(smoothstep(0.5, 0.0, d), 2.0);
     gl_FragColor = vec4(vColor * (0.65 + vGlow), alpha * vGlow);
   }
 `;
@@ -88,7 +93,7 @@ const ParticleField = ({ density = 1 }) => {
     }
 
     const isSmall = window.innerWidth < 768;
-    const count = Math.round((isSmall ? 800 : 2100) * density);
+    const count = Math.round((isSmall ? 450 : 1100) * density);
     const maxDpr = isSmall ? 1.5 : 2;
 
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxDpr));
@@ -113,7 +118,7 @@ const ParticleField = ({ density = 1 }) => {
       positions[i * 3] = Math.random() - 0.5;
       positions[i * 3 + 1] = Math.random() - 0.5;
       positions[i * 3 + 2] = Math.random() - 0.5;
-      scales[i] = 0.35 + Math.pow(Math.random(), 3) * 2.2;
+      scales[i] = 0.45 + Math.pow(Math.random(), 3) * 1.3;
       phases[i] = Math.random() * Math.PI * 2;
       const color = palette[(Math.random() * palette.length) | 0];
       colors[i * 3] = color.r;
@@ -133,7 +138,7 @@ const ParticleField = ({ density = 1 }) => {
       uMouse: { value: new THREE.Vector2(9999, 9999) },
       uStrength: { value: 0 },
       uRadius: { value: isSmall ? 16 : 22 },
-      uSize: { value: isSmall ? 8 : 10 },
+      uSize: { value: isSmall ? 2.2 : 2.6 },
       uPixelRatio: { value: renderer.getPixelRatio() },
     };
 
@@ -162,24 +167,18 @@ const ParticleField = ({ density = 1 }) => {
 
     const icosa = new THREE.Mesh(
       new THREE.IcosahedronGeometry(17, 1),
-      wireMaterial(0x01be96, 0.11)
+      wireMaterial(0x01be96, 0.07)
     );
-    icosa.position.set(26, 4, -26);
-
-    const knot = new THREE.Mesh(
-      new THREE.TorusKnotGeometry(9, 2.1, 90, 12),
-      wireMaterial(0x7c5cff, 0.09)
-    );
-    knot.position.set(-30, -12, -34);
+    icosa.position.set(30, 6, -46);
 
     const ring = new THREE.Mesh(
       new THREE.TorusGeometry(12, 0.35, 8, 70),
-      wireMaterial(0x24d3ee, 0.12)
+      wireMaterial(0x24d3ee, 0.07)
     );
-    ring.position.set(-18, 20, -20);
+    ring.position.set(34, 30, -52);
     ring.rotation.x = 1.1;
 
-    solids.add(icosa, knot, ring);
+    solids.add(icosa, ring);
     scene.add(solids);
 
     /* ---------------- sizing ---------------- */
@@ -288,8 +287,6 @@ const ParticleField = ({ density = 1 }) => {
 
       icosa.rotation.x = elapsed * 0.14;
       icosa.rotation.y = elapsed * 0.1;
-      knot.rotation.y = elapsed * 0.18;
-      knot.rotation.z = elapsed * 0.09;
       ring.rotation.z = elapsed * 0.22;
       solids.position.y = Math.sin(elapsed * 0.35) * 1.6;
 
