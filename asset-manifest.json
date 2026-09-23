@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.e19f4e04.css",
-    "main.js": "./static/js/main.2e3cce5e.js",
+    "main.css": "./static/css/main.cd19d665.css",
+    "main.js": "./static/js/main.ab1d7fa2.js",
     "static/media/major2024.jpg": "./static/media/major2024.ee2b8b9ff325e9f92c5b.jpg",
     "static/media/major2023.jpg": "./static/media/major2023.8ec8becdb5beb590c4af.jpg",
     "static/media/wt hack.jpg": "./static/media/wt hack.3779dbeffe4c13abf93f.jpg",
@@ -43,11 +43,11 @@
     "static/media/opel-vectra-2.jpg": "./static/media/opel-vectra-2.5aa9607cde2f46e7beb9.jpg",
     "static/media/opel-vectra-3.jpg": "./static/media/opel-vectra-3.cdb501940d663262cff8.jpg",
     "index.html": "./index.html",
-    "main.e19f4e04.css.map": "./static/css/main.e19f4e04.css.map",
-    "main.2e3cce5e.js.map": "./static/js/main.2e3cce5e.js.map"
+    "main.cd19d665.css.map": "./static/css/main.cd19d665.css.map",
+    "main.ab1d7fa2.js.map": "./static/js/main.ab1d7fa2.js.map"
   },
   "entrypoints": [
-    "static/css/main.e19f4e04.css",
-    "static/js/main.2e3cce5e.js"
+    "static/css/main.cd19d665.css",
+    "static/js/main.ab1d7fa2.js"
   ]
 }
