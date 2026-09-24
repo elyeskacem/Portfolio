@@ -28,6 +28,21 @@
 import TRAIN from "../assets/images/ScreenShots/TRAINANIM.jpg";
 import BLACKHOLE from "../assets/images/ScreenShots/blackhole.jpg";
 
+// Online Training Center — VR lounge: wide shot, window corner, alternate
+// angle, wing logo detail, ceiling arches, nebula window close-up
+import OTC_MAIN from "../assets/images/Design Online Training Center/Screenshot 2026-09-24 223701.png";
+import OTC_CORNER from "../assets/images/Design Online Training Center/Screenshot 2026-09-24 223636.png";
+import OTC_ANGLE from "../assets/images/Design Online Training Center/Screenshot 2026-09-24 223808.png";
+import OTC_LOGO from "../assets/images/Design Online Training Center/Screenshot 2026-09-24 223720.png";
+import OTC_CEILING from "../assets/images/Design Online Training Center/Screenshot 2026-09-24 223852.png";
+import OTC_NEBULA from "../assets/images/Design Online Training Center/Screenshot 2026-09-24 223936.png";
+
+// Canyon Bus — hero shot, wide establishing, interior, top-down layout
+import BUS_HERO from "../assets/images/Design Render/1771367249787.jpg";
+import BUS_WIDE from "../assets/images/Design Render/1771367249958.jpg";
+import BUS_INTERIOR from "../assets/images/Design Render/1771367250142.jpg";
+import BUS_TOP from "../assets/images/Design Render/1771367250114.jpg";
+
 // Opel Vectra B — front 3/4, rear 3/4, side, top
 import OPEL_FRONT from "../assets/images/3d/opel-vectra-1.jpg";
 import OPEL_REAR from "../assets/images/3d/opel-vectra-4.jpg";
@@ -62,6 +77,27 @@ const designs = [
       "My first complete 3D model: the 1996 Opel Vectra B that has been in the family since 1997. Modelled, textured and lit from scratch in Blender — a piece of personal history rebuilt polygon by polygon.",
     images: [OPEL_FRONT, OPEL_REAR, OPEL_SIDE, OPEL_TOP],
     link: "https://www.linkedin.com/posts/elyeskacem_blender-3d-modeling-activity-7231215850496655361-Pels",
+    featured: true,
+  },
+  {
+    title: "Training Center Lounge",
+    category: "Environment",
+    software: ["Blender", "Unity"],
+    year: "2026",
+    description:
+      "A sci-fi lounge built for the Online Training Center platform — a panoramic window onto space, soft blue lighting and a conference table where learners meet between sessions.",
+    images: [OTC_MAIN, OTC_CORNER, OTC_ANGLE, OTC_LOGO, OTC_CEILING, OTC_NEBULA],
+    link: "https://youtu.be/40cRxQzAc2g",
+    featured: true,
+  },
+  {
+    title: "Canyon Bus",
+    category: "Environment",
+    software: ["Blender", "Unity"],
+    year: "2026",
+    description:
+      "A stylised low-poly bus crossing a sun-baked canyon — modelling, environment art and lighting built from scratch, with a top-down pass for blocking out the scene.",
+    images: [BUS_HERO, BUS_WIDE, BUS_INTERIOR, BUS_TOP],
     featured: true,
   },
   {

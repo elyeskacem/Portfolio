@@ -35,10 +35,38 @@ import XPLORE from "../assets/images/ScreenShots/xplore.jpg";
 import TRAIN from "../assets/images/ScreenShots/TRAINANIM.jpg";
 import WH from "../assets/images/ScreenShots/WritingHackathon.jpg";
 
+// Exam Stress Monitor — VR classroom wide, login screen, MCQ exam, student
+// close-up, alternate classroom angle, then the ExamPlatform web dashboard:
+// home, student management, results & stress analytics
+import ESM_CLASSROOM from "../assets/images/Project Stress Management/Screenshot 2026-09-24 211610.png";
+import ESM_LOGIN from "../assets/images/Project Stress Management/Screenshot 2026-09-24 212048.png";
+import ESM_EXAM from "../assets/images/Project Stress Management/Screenshot 2026-09-24 212232.png";
+import ESM_STUDENT from "../assets/images/Project Stress Management/Screenshot 2026-09-24 211814.png";
+import ESM_CLASSROOM2 from "../assets/images/Project Stress Management/Screenshot 2026-09-24 212112.png";
+import ESM_WEB_HOME from "../assets/images/Project Stress Management/1775577146781.jpg";
+import ESM_WEB_STUDENTS from "../assets/images/Project Stress Management/1775577137717.jpg";
+import ESM_WEB_RESULTS from "../assets/images/Project Stress Management/1775577099712.jpg";
+
 // The filter chips above the grid. "All" is added automatically.
 export const projectFilters = ["VR", "AR", "Game", "Simulation", "Web", "3D"];
 
 const projects = [
+  {
+    images: [
+      ESM_CLASSROOM,
+      ESM_LOGIN,
+      ESM_EXAM,
+      ESM_STUDENT,
+      ESM_CLASSROOM2,
+      ESM_WEB_HOME,
+      ESM_WEB_STUDENTS,
+      ESM_WEB_RESULTS,
+    ],
+    title: "Exam Stress Monitor",
+    tags: ["VR", "Web", "Simulation"],
+    disc: "VR exam simulator that reads click behaviour to flag rising stress, paired with a web dashboard where instructors review performance and stress profiles per student.",
+    year: "2026",
+  },
   {
     images: [VRSPACE],
     title: "Astronaut Daily Life",
