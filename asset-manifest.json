@@ -1,8 +1,19 @@
 {
   "files": {
     "main.css": "./static/css/main.cd19d665.css",
-    "main.js": "./static/js/main.ab1d7fa2.js",
+    "main.js": "./static/js/main.fe598956.js",
+    "static/media/Screenshot 2026-09-24 211610.png": "./static/media/Screenshot 2026-09-24 211610.30a9fe8cbbb5d3696595.png",
+    "static/media/Screenshot 2026-09-24 223852.png": "./static/media/Screenshot 2026-09-24 223852.b4eb8dd37c4e5477166b.png",
     "static/media/major2024.jpg": "./static/media/major2024.ee2b8b9ff325e9f92c5b.jpg",
+    "static/media/Screenshot 2026-09-24 223936.png": "./static/media/Screenshot 2026-09-24 223936.e5d2eda54d8ffd00e83d.png",
+    "static/media/Screenshot 2026-09-24 223808.png": "./static/media/Screenshot 2026-09-24 223808.4898c7bc132ef6b56459.png",
+    "static/media/Screenshot 2026-09-24 212112.png": "./static/media/Screenshot 2026-09-24 212112.c64b3f15fd04f2bf01dd.png",
+    "static/media/Screenshot 2026-09-24 223636.png": "./static/media/Screenshot 2026-09-24 223636.9202fde116daad4094f4.png",
+    "static/media/Screenshot 2026-09-24 223701.png": "./static/media/Screenshot 2026-09-24 223701.de7b12998d71d3c2f9a2.png",
+    "static/media/Screenshot 2026-09-24 211814.png": "./static/media/Screenshot 2026-09-24 211814.a608b3c5528f08534520.png",
+    "static/media/Screenshot 2026-09-24 223720.png": "./static/media/Screenshot 2026-09-24 223720.9431cee0fa2e1128b90b.png",
+    "static/media/Screenshot 2026-09-24 212232.png": "./static/media/Screenshot 2026-09-24 212232.611362d6dbe6b27f0bef.png",
+    "static/media/Screenshot 2026-09-24 212048.png": "./static/media/Screenshot 2026-09-24 212048.afa1fd09863aed1d506f.png",
     "static/media/major2023.jpg": "./static/media/major2023.8ec8becdb5beb590c4af.jpg",
     "static/media/wt hack.jpg": "./static/media/wt hack.3779dbeffe4c13abf93f.jpg",
     "static/media/me.jpg": "./static/media/me.0cd63df653854503aa0c.jpg",
@@ -25,11 +36,18 @@
     "static/media/winkid.jpg": "./static/media/winkid.7e513a6c8f115394f6b1.jpg",
     "static/media/ggj.jpg": "./static/media/ggj.778b13fa04fb7f3881e1.jpg",
     "static/media/vrselim.jpg": "./static/media/vrselim.77712bff5272303249f8.jpg",
+    "static/media/1775577146781.jpg": "./static/media/1775577146781.384134cfc9101a79d0a2.jpg",
     "static/media/cvar.jpg": "./static/media/cvar.6bbf424489925db73f91.jpg",
+    "static/media/1771367250142.jpg": "./static/media/1771367250142.18c3baa8442f509d8fa6.jpg",
     "static/media/war.jpg": "./static/media/war.71356a4d6c58fce3fe42.jpg",
+    "static/media/1775577099712.jpg": "./static/media/1775577099712.074ff0c93b027e97a3cc.jpg",
     "static/media/blackhole.jpg": "./static/media/blackhole.17e2b7d94a6f66375250.jpg",
+    "static/media/1771367249787.jpg": "./static/media/1771367249787.16f2618e74c8d5b18a64.jpg",
+    "static/media/1775577137717.jpg": "./static/media/1775577137717.9f67fae451c8a0b8670c.jpg",
+    "static/media/1771367249958.jpg": "./static/media/1771367249958.31bd2f9b9d87b28dd0b6.jpg",
     "static/media/ggj 2025.jpg": "./static/media/ggj 2025.e53b6b52262170b70bb5.jpg",
     "static/media/Screenshot 2023-10-31 201936.jpg": "./static/media/Screenshot 2023-10-31 201936.9d0900329b2e30c8fe29.jpg",
+    "static/media/1771367250114.jpg": "./static/media/1771367250114.1028903fd1c32911e11a.jpg",
     "static/media/xplore.jpg": "./static/media/xplore.e4ecbb75bb93a872f78a.jpg",
     "static/media/golf6-1.jpg": "./static/media/golf6-1.c19e954b8e40c21485d9.jpg",
     "static/media/ggj2k22.jpg": "./static/media/ggj2k22.7434af50bab39df85fa8.jpg",
@@ -44,10 +62,10 @@
     "static/media/opel-vectra-3.jpg": "./static/media/opel-vectra-3.cdb501940d663262cff8.jpg",
     "index.html": "./index.html",
     "main.cd19d665.css.map": "./static/css/main.cd19d665.css.map",
-    "main.ab1d7fa2.js.map": "./static/js/main.ab1d7fa2.js.map"
+    "main.fe598956.js.map": "./static/js/main.fe598956.js.map"
   },
   "entrypoints": [
     "static/css/main.cd19d665.css",
-    "static/js/main.ab1d7fa2.js"
+    "static/js/main.fe598956.js"
   ]
 }
