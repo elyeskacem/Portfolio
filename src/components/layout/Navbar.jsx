@@ -2,7 +2,12 @@ import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { GiCandleFlame } from "react-icons/gi";
 import { navLinks } from "../../data/site";
-import { useScrollProgress, useScrollSpy, useScrollLock } from "../../hooks";
+import {
+  useMediaQuery,
+  useScrollLock,
+  useScrollProgress,
+  useScrollSpy,
+} from "../../hooks";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -10,6 +15,7 @@ const Navbar = () => {
   const ids = useMemo(() => navLinks.map((l) => l.href.replace("#", "")), []);
   const active = useScrollSpy(ids);
   const progress = useScrollProgress();
+  const isDesktop = useMediaQuery("(min-width: 901px)");
 
   useScrollLock(open);
 
@@ -26,51 +32,84 @@ const Navbar = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  return (
-    <Bar $scrolled={scrolled} $open={open}>
-      <Progress style={{ transform: `scaleX(${progress})` }} />
-      <Inner>
-        <Logo href="#home" onClick={() => setOpen(false)}>
-          <span className="flame">
-            <GiCandleFlame />
-          </span>
-          <b>
-            Elyes<i>.</i>
-          </b>
-        </Logo>
+  // Leaving the menu open while resizing up to desktop would strand it.
+  useEffect(() => {
+    if (isDesktop) setOpen(false);
+  }, [isDesktop]);
 
-        <Links $open={open}>
+  const isActive = (href) => active === href.replace("#", "");
+
+  return (
+    <>
+      <Bar $scrolled={scrolled} $open={open}>
+        <Progress style={{ transform: `scaleX(${progress})` }} />
+        <Inner>
+          <Logo href="#home" onClick={() => setOpen(false)}>
+            <span className="flame">
+              <GiCandleFlame />
+            </span>
+            <b>
+              Elyes<i>.</i>
+            </b>
+          </Logo>
+
+          <Links>
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={isActive(link.href) ? "active" : ""}
+              >
+                {link.label}
+              </a>
+            ))}
+          </Links>
+
+          <Cta href="#contact">Let&apos;s talk</Cta>
+
+          <Burger
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            $open={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span />
+            <span />
+          </Burger>
+        </Inner>
+      </Bar>
+
+      {/* Deliberately outside <Bar>: an ancestor with backdrop-filter becomes
+          the containing block for fixed children, which squashed this overlay
+          into the 72px header and stacked every link on top of the others. */}
+      <MobileMenu $open={open} aria-hidden={!open}>
+        <nav>
           {navLinks.map((link, i) => (
             <a
               key={link.href}
               href={link.href}
-              className={active === link.href.replace("#", "") ? "active" : ""}
+              className={isActive(link.href) ? "active" : ""}
               style={{ "--i": i }}
+              tabIndex={open ? 0 : -1}
               onClick={() => setOpen(false)}
             >
               <em>0{i + 1}</em>
-              {link.label}
+              <span>{link.label}</span>
             </a>
           ))}
-          <MobileCta href="#contact" onClick={() => setOpen(false)}>
-            Let&apos;s talk
-          </MobileCta>
-        </Links>
-
-        <Cta href="#contact">Let&apos;s talk</Cta>
-
-        <Burger
-          type="button"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
+        </nav>
+        <MobileCta
+          href="#contact"
           $open={open}
-          onClick={() => setOpen((v) => !v)}
+          style={{ "--i": navLinks.length }}
+          tabIndex={open ? 0 : -1}
+          onClick={() => setOpen(false)}
         >
-          <span />
-          <span />
-        </Burger>
-      </Inner>
-    </Bar>
+          Let&apos;s talk
+        </MobileCta>
+      </MobileMenu>
+    </>
   );
 };
 
@@ -81,14 +120,15 @@ const Bar = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 90;
+  /* sits above the mobile overlay so the logo and close button stay usable */
+  z-index: 120;
   transition: background 500ms var(--ease), border-color 500ms var(--ease),
     backdrop-filter 500ms var(--ease);
   background: ${(p) =>
-    p.$scrolled || p.$open ? "rgba(5, 6, 10, 0.72)" : "transparent"};
+    p.$scrolled && !p.$open ? "rgba(5, 6, 10, 0.72)" : "transparent"};
   border-bottom: 1px solid
     ${(p) => (p.$scrolled && !p.$open ? "var(--border)" : "transparent")};
-  backdrop-filter: ${(p) => (p.$scrolled || p.$open ? "blur(14px)" : "none")};
+  backdrop-filter: ${(p) => (p.$scrolled && !p.$open ? "blur(14px)" : "none")};
 `;
 
 const Progress = styled.div`
@@ -103,7 +143,6 @@ const Progress = styled.div`
 `;
 
 const Inner = styled.nav`
-  user-select: none;
   width: min(1180px, 88%);
   margin: 0 auto;
   height: var(--nav-h);
@@ -118,10 +157,11 @@ const Inner = styled.nav`
 `;
 
 const Logo = styled.a`
+  position: relative; /* z-index does nothing on a static element */
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  z-index: 101;
+  z-index: 2;
   font-family: "Space Grotesk", sans-serif;
 
   .flame {
@@ -156,10 +196,6 @@ const Links = styled.div`
     color: var(--muted);
     transition: color 320ms var(--ease);
 
-    em {
-      display: none;
-    }
-
     &::after {
       content: "";
       position: absolute;
@@ -186,47 +222,7 @@ const Links = styled.div`
   }
 
   @media (max-width: 900px) {
-    position: fixed;
-    inset: 0;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.3rem;
-    background: linear-gradient(160deg, #070810 0%, #0c0f18 100%);
-    clip-path: ${(p) =>
-      p.$open ? "circle(140% at 100% 0)" : "circle(0% at 100% 0)"};
-    transition: clip-path 750ms var(--ease);
-    z-index: 100;
-
-    a {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.85rem;
-      color: var(--text);
-      display: flex;
-      align-items: baseline;
-      gap: 0.7rem;
-      opacity: ${(p) => (p.$open ? 1 : 0)};
-      transform: translateY(${(p) => (p.$open ? "0" : "18px")});
-      transition: opacity 500ms var(--ease)
-          calc(120ms + var(--i) * 70ms),
-        transform 500ms var(--ease) calc(120ms + var(--i) * 70ms),
-        color 300ms var(--ease);
-
-      em {
-        display: block;
-        font-size: 0.72rem;
-        font-style: normal;
-        letter-spacing: 0.1em;
-        color: var(--accent);
-      }
-
-      &::after {
-        display: none;
-      }
-
-      &.active {
-        color: var(--accent);
-      }
-    }
+    display: none;
   }
 `;
 
@@ -256,19 +252,6 @@ const Cta = styled.a`
   }
 `;
 
-const MobileCta = styled.a`
-  display: none;
-
-  @media (max-width: 900px) {
-    ${ctaStyles};
-    display: inline-block;
-    margin-top: 1rem;
-    font-size: 1rem !important;
-    color: var(--accent) !important;
-    border-color: var(--accent);
-  }
-`;
-
 const Burger = styled.button`
   display: none;
   position: relative;
@@ -276,18 +259,19 @@ const Burger = styled.button`
   height: 42px;
   border: 1px solid var(--border);
   border-radius: 50%;
-  background: var(--surface);
+  background: ${(p) => (p.$open ? "transparent" : "var(--surface)")};
   cursor: pointer;
-  z-index: 101;
+  z-index: 2;
 
   span {
     position: absolute;
     left: 50%;
+    top: 50%;
     width: 17px;
     height: 1.6px;
     background: var(--text);
     border-radius: 2px;
-    transition: transform 420ms var(--ease), opacity 200ms var(--ease);
+    transition: transform 420ms var(--ease);
   }
 
   span:first-child {
@@ -295,7 +279,6 @@ const Burger = styled.button`
       p.$open
         ? "translate(-50%, -50%) rotate(45deg)"
         : "translate(-50%, calc(-50% - 4px))"};
-    top: 50%;
   }
 
   span:last-child {
@@ -303,10 +286,104 @@ const Burger = styled.button`
       p.$open
         ? "translate(-50%, -50%) rotate(-45deg)"
         : "translate(-50%, calc(-50% + 4px))"};
-    top: 50%;
   }
 
   @media (max-width: 900px) {
     display: block;
   }
+`;
+
+const MobileMenu = styled.div`
+  display: none;
+
+  @media (max-width: 900px) {
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* clears the header, and lets the list scroll on short screens */
+    padding: calc(var(--nav-h) + 1.25rem) 1.75rem 2rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: radial-gradient(
+        60% 40% at 100% 0%,
+        rgba(1, 190, 150, 0.16),
+        transparent 70%
+      ),
+      linear-gradient(160deg, #070810 0%, #0c0f18 100%);
+    clip-path: ${(p) =>
+      p.$open ? "circle(150% at 100% 0)" : "circle(0% at 100% 0)"};
+    visibility: ${(p) => (p.$open ? "visible" : "hidden")};
+    transition: clip-path 700ms var(--ease),
+      visibility 0s linear ${(p) => (p.$open ? "0s" : "700ms")};
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    /* scoped to nav: a bare "a" here outranks MobileCta's own rules and
+       strips its padding and centering */
+    nav a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.85rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-family: "Space Grotesk", sans-serif;
+      /* shrinks on narrow phones rather than wrapping over itself */
+      font-size: clamp(1.35rem, 7vw, 1.9rem);
+      line-height: 1.2;
+      color: var(--text);
+      opacity: ${(p) => (p.$open ? 1 : 0)};
+      transform: translateY(${(p) => (p.$open ? "0" : "16px")});
+      transition: opacity 450ms var(--ease) calc(150ms + var(--i) * 65ms),
+        transform 450ms var(--ease) calc(150ms + var(--i) * 65ms),
+        color 300ms var(--ease);
+
+      em {
+        flex: 0 0 auto;
+        font-size: 0.7rem;
+        font-style: normal;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+      }
+
+      &.active {
+        color: var(--accent);
+      }
+    }
+  }
+
+  /* landscape phones: start at the top so nothing is cut off */
+  @media (max-width: 900px) and (max-height: 620px) {
+    justify-content: flex-start;
+
+    nav a {
+      padding: 0.55rem 0;
+      font-size: clamp(1.1rem, 6vw, 1.45rem);
+    }
+  }
+`;
+
+const MobileCta = styled.a`
+  ${ctaStyles};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 100%;
+  margin-top: 1.75rem;
+  padding: 0.95rem 1.35rem;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(1, 190, 150, 0.1);
+  opacity: ${(p) => (p.$open ? 1 : 0)};
+  transition: opacity 450ms var(--ease) calc(150ms + var(--i) * 65ms);
 `;
