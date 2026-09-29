@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.cd19d665.css",
-    "main.js": "./static/js/main.fe598956.js",
+    "main.js": "./static/js/main.fb2a7c7f.js",
     "static/media/Screenshot 2026-09-24 211610.png": "./static/media/Screenshot 2026-09-24 211610.30a9fe8cbbb5d3696595.png",
     "static/media/Screenshot 2026-09-24 223852.png": "./static/media/Screenshot 2026-09-24 223852.b4eb8dd37c4e5477166b.png",
     "static/media/major2024.jpg": "./static/media/major2024.ee2b8b9ff325e9f92c5b.jpg",
@@ -62,10 +62,10 @@
     "static/media/opel-vectra-3.jpg": "./static/media/opel-vectra-3.cdb501940d663262cff8.jpg",
     "index.html": "./index.html",
     "main.cd19d665.css.map": "./static/css/main.cd19d665.css.map",
-    "main.fe598956.js.map": "./static/js/main.fe598956.js.map"
+    "main.fb2a7c7f.js.map": "./static/js/main.fb2a7c7f.js.map"
   },
   "entrypoints": [
     "static/css/main.cd19d665.css",
-    "static/js/main.fe598956.js"
+    "static/js/main.fb2a7c7f.js"
   ]
 }
